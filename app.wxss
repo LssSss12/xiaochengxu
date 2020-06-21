@@ -1,0 +1,16 @@
+page{
+  height: 100%;
+  background-color: #f7f7f7;
+  border-box: box-sizing;
+}
+.box{
+	padding: 56rpx 30rpx 56rpx 30rpx;
+}
+.bar-index--van-nav-bar__arrow{
+  color:#333!important;
+  font-size: 18px!important;
+}
+.van-nav-bar{
+  background-color: #f7f7f7!important;
+}
+  

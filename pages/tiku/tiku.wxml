@@ -1,0 +1,51 @@
+<van-nav-bar
+  title="题库"
+/>
+
+<van-tabs class="tiku-tab" active="{{ active }}" line-width="14" sticky swipeable="true" bind:change="onChange">
+    <van-tab title="经济"></van-tab>
+    <van-tab title="法规"></van-tab>
+    <van-tab title="管理"></van-tab>
+    <van-tab title="建筑实务"></van-tab>
+    <van-tab title="222"></van-tab>
+  </van-tabs>
+  <view class="tiku-head">
+      <van-search class="tiku-head-l" value="{{ search }}" placeholder="请输入搜索关键词" />
+      <view class="tiku-head-r">
+        <view class="tiku-head-r-text">距离一建考试还有</view>
+        <view class="tiku-head-r-date">
+          <text class="tiku-head-r-date-text">0</text>
+          <text class="tiku-head-r-date-text">9</text>
+          <text class="tiku-head-r-date-text">9</text>
+          天
+        </view>
+      </view>
+    </view>
+  <view class="tiku-body">
+    <view class="tiku-part1">
+      <view class="tiku-part1-title">章节真题</view>
+      <view style="display:flex">
+        <view class="tiku-part1-con-chart">
+            <van-circle
+            value="{{ value }}"
+            layer-color="#eeeeee"
+            color="#ee0a24"
+            text="颜色定制"
+          />
+          <view style="position:absolute;top:0px;left:0px;">
+            <view>68%</view>
+            <view>正确率</view>
+          </view>
+        </view>
+        <view class="tiku-part1-con">
+          <view>
+            <text style="font-size:28rpx;">继续上次练习</text>
+            <text style="font-size:24rpx;color:#FF7944;">68</text>
+            <text style="font-size:24rpx;color:#9C9C9E;">/100</text>
+          </view>
+          <view style="font-size:24rpx;color:#9C9C9E;margin-top:24rpx;">上次：建设工程项目策划</view>
+        </view>
+      </view>
+    </view>
+  </view>
+

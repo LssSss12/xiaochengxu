@@ -1,0 +1,59 @@
+
+<view>
+<view class="flex flex-direction">
+	<image class="bg" src="../../images/my_bg.png" style="width:100%;"></image>
+	
+</view>
+<image class="head" src="../../images/head.png" mode="widthFix" style="position: absolute;top: 16%;left: 10%;height: 150rpx;width: 150rpx;"></image>
+<text class="name" style="color: white;font-size: 35rpx;position: absolute;top: 18%;left: 36%;">李硕</text>
+<text class="name" style="color: white;font-size: 34rpx;position: absolute;top: 22%;left: 36%;">18512828010</text>
+<van-cell-group>
+	<van-cell value="VIP" icon="shop-o" is-link>
+		<view slot="title">
+			<view class="van-cell-text">错题考点</view>
+		</view>
+	</van-cell>
+	<van-cell value="VIP" icon="shop-o" is-link>
+		<view slot="title">
+			<view class="van-cell-text">分值分布</view>
+		</view>
+	</van-cell>
+	<van-cell value="VIP" icon="shop-o" is-link>
+		<view slot="title">
+			<view class="van-cell-text">会员周报</view>
+		</view>
+	</van-cell>
+	<van-cell value="VIP" icon="shop-o" is-link>
+		<view slot="title">
+			<view class="van-cell-text">AI评测(公共课)</view>
+		</view>
+	</van-cell>
+</van-cell-group>
+<view style="width:100%;height:24rpx;"></view>
+<van-cell-group>
+	<van-cell value="VIP" icon="shop-o" is-link>
+		<view slot="title">
+			<view class="van-cell-text">成就查询</view>
+		</view>
+	</van-cell>
+</van-cell-group>
+<view style="width:100%;height:24rpx;"></view>
+<van-cell-group>
+	<van-cell value="待开启" icon="shop-o" is-link>
+		<view slot="title">
+			<view class="van-cell-text">题库会员</view>
+		</view>
+	</van-cell>
+	<van-cell value="3张" icon="shop-o" is-link>
+		<view slot="title">
+			<view class="van-cell-text">卡券</view>
+		</view>
+	</van-cell>
+	<van-cell icon="shop-o" is-link>
+		<view slot="title">
+			<view class="van-cell-text">考试科目</view>
+		</view>
+	</van-cell>
+</van-cell-group>
+
+</view>

@@ -1,0 +1,72 @@
+.examDetail{
+
+}
+.ed-title{
+	font-size: 32rpx;
+	color: #333;
+	text-align: center;
+	margin-bottom: 40rpx;
+}
+.ed-part{
+	display: flex;
+	justify-content:space-between;	
+	flex-wrap:wrap;
+	margin-bottom: 40rpx;
+}
+.ed-part-list{
+	text-align: center;
+	background-color: #fff;
+	height:264rpx;
+	width: 216rpx;
+	border-radius: 8rpx;
+	margin-bottom: 20rpx;
+}
+.ed-part-list2{
+	display: flex;
+	background-color: #fff;
+	height:168rpx;
+	line-height:168rpx;
+	width: 49%;
+	border-radius: 8rpx;
+	margin-bottom: 20rpx;
+}
+.ed-part-list2 .ed-part-list-icon{
+	margin:50rpx 40rpx;
+}
+.ed-part-list3{
+	width: 100%;
+	display: flex;
+	background-color: #fff;
+	height:168rpx;
+	line-height:168rpx;
+	border-radius: 8rpx;
+	margin-bottom: 20rpx;
+}
+.ed-part-list3 .ed-part-list-icon{
+	margin:50rpx 40rpx;
+}
+.ed-part-list-chked{
+	border: 2rpx solid #FFB57F;
+	position: relative;
+	background-color: #FFF7F0;
+}
+.ed-part-list-chk-icon{
+	position: absolute;
+	width: 36rpx;
+	height: 36rpx;
+	top: -1rpx;
+	right: 0rpx;
+	background: #F36210;
+	border-radius: 0rpx 8rpx 0rpx 8rpx;
+}
+.ed-part-list-icon{
+	height: 64rpx;
+	width: 72rpx;
+	margin:54rpx 0rpx 50rpx 0rpx;
+}
+.ed-part-list-title{
+	font-size: 28rpx;
+}
+.ed-btn button{
+	margin-top: 140rpx;
+}

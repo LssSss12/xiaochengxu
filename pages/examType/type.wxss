@@ -1,0 +1,35 @@
+.exam-list{
+	width: 100%;
+	height:340rpx;
+	background-color:#fff;
+	margin-bottom: 40rpx;
+	border-radius: 16px;
+	box-shadow: 0px 0px 6px #e6e6e6;
+	position: relative;
+}
+.exam-list-img{
+	width: 244rpx;
+	height:244rpx;
+	position: absolute;
+	top: 48rpx;
+	left: 20rpx;
+}
+.exam-list-name{
+	position: absolute;
+	left: 310rpx;
+	top: 152rpx;
+}
+.exam-list-icon1{
+	position: absolute;
+	right: 0rpx;
+	top: 0rpx;
+	width: 210rpx;
+	height: 144rpx;
+}
+.exam-list-icon2{
+	position: absolute;
+	right: 156rpx;
+	bottom: 0rpx;
+	width: 144rpx;
+	height: 72rpx;
+}

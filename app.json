@@ -1,0 +1,49 @@
+{
+	"pages": [
+		"pages/tiku/tiku",
+		"pages/examCourse/course",
+		"pages/examType/type",
+		"pages/my/my"
+		
+	],
+	"window": {
+		"backgroundTextStyle": "light",
+		"navigationBarBackgroundColor": "#f7f7f7",
+		"navigationStyle": "custom",
+		"navigationBarTextStyle": "black"
+	},
+	"usingComponents": {
+		"van-cell": "vant-weapp/cell/index",
+		"van-cell-group": "vant-weapp/cell-group/index",
+		"van-icon": "vant-weapp/icon/index",
+		"van-nav-bar": "vant-weapp/nav-bar/index",
+		"van-button": "vant-weapp/button/index",
+		"van-tab": "vant-weapp/tab/index",
+		"van-tabs": "vant-weapp/tabs/index",
+		"van-row": "vant-weapp/row/index",
+		"van-col": "vant-weapp/col/index",
+		"van-search": "vant-weapp/search/index",
+		"van-circle": "vant-weapp/circle/index"
+	},
+	"tabBar": {
+		"color": "#9CA5B6",
+		"selectedColor": "#6577FF",
+		"borderStyle": "white",
+		"backgroundColor": "#f7f7f7",
+		"list": [
+			{
+				"text": "题库",
+				"pagePath": "pages/tiku/tiku",
+				"iconPath": "images/contract.png",
+				"selectedIconPath": "images/select_contract.png"
+			},
+			{
+				"text": "我的",
+				"pagePath": "pages/my/my",
+				"iconPath": "images/my.png",
+				"selectedIconPath": "images/select_my.png"
+			}
+		]
+	},
+	"sitemapLocation": "sitemap.json"
+}

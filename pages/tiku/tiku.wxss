@@ -1,0 +1,52 @@
+
+.tiku-head{
+	display: flex;
+	justify-content: space-between;
+	padding-top: 26rpx;
+	background: #fff;
+}
+.tiku-head-l .van-search{
+	height:68rpx
+}
+.tiku-head-l .van-search .van-search__content{
+	border-radius: 34rpx;
+	width: 458rpx;
+}
+.tiku-head-r{
+	width:220rpx;
+	padding-right: 16rpx;
+}
+.tiku-head-r-text{
+	font-size: 24rpx;
+	color:#333;
+}
+.tiku-head-r-date{
+	font-size: 24rpx;
+}
+.tiku-head-r-date-text{
+	padding:4rpx 10rpx;
+	margin: 0rpx 5rpx;
+	background-color: #f7f7f7;
+	color: #FF7944;
+	font-weight: bold;
+}
+.tiku-body{
+	height:600rpx;
+	background-color: #fff;
+	padding:0rpx 32rpx;
+}
+.tiku-part1-con{
+	padding:40rpx 0rpx 0rpx 40rpx;
+	border-radius: 8rpx;
+}
+.tiku-part1-con-chart{
+	width:200rpx;
+	height:200rpx;
+	position: relative;
+}
+.tiku-part1-con{
+	width: 446rpx;
+	height:156rpx;
+	background-color: #f7f7f7;
+	margin-left: 42rpx;
+}
