@@ -1,0 +1,53 @@
+.topicCard{
+	padding: 40rpx 40rpx;
+}
+.topicCard-title{
+	font-size: 32rpx;
+	color: #333;
+	margin: 20rpx 0rpx 40rpx 0rpx;
+	font-weight: bold;
+}
+.card-list{
+	float: left;
+	margin-right: 38rpx;
+	margin-bottom: 40rpx;
+	width: 68rpx;
+	height: 68rpx;
+	text-align: center;
+	line-height: 68rpx;
+	border-radius: 50%;
+	border:2rpx solid #ddd;
+}
+.card-list-chk{
+	background-color: #e36a30;
+	color: #fff;
+	border-color: #e36a30;
+}
+.card-btn{
+	position: fixed;
+	bottom: 40rpx;
+	left: 0rpx;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 0rpx 40rpx;
+}
+.ls-content{
+	height: 148rpx;
+	line-height: 148rpx;
+}
+.ls-footer{
+	display: flex;
+}
+.ls-btn{
+ height:82rpx;
+ line-height: 82rpx;
+}
+.ls-footer-y2{
+ width: 290rpx;
+ color:#fff;
+ background-color: #e36a30;
+}
+.ls-footer-n{
+ width: 290rpx;
+ background-color: #f0f0f0;
+}

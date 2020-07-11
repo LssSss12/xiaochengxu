@@ -1,25 +1,19 @@
 let api = require('../../utils/api.js')
+let app = getApp();
 Page({
 	data: {
 		types: []
 	},
-	onLoad: function (options) {
-		let param = {
-
-		}
+	onLoad: function (options) {},
+	
+	getExamType() {
+		let param = {}
 		api.getExamTypeInfoList(param)
 		.then(res => {
 			this.setData({
 				types:res.data
 			})
-		}).catch(res => {
-
-		})
-	},
-	onClickLeft() {
-		wx.switchTab({
-			url: '../tiku/tiku',
-		})
+		}).catch(res => {})
 	},
 	toSort(e) {
 		let name=e.currentTarget.dataset.name

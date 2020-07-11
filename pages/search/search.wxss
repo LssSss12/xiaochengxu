@@ -1,0 +1,67 @@
+.search{
+	height: calc(100% - 176rpx);
+	background-color: #f7f7f7;
+}
+.search-head{
+	background-color: #fff;
+	padding-bottom: 24rpx;
+}
+.search-head-tab{
+	margin-top: 10rpx;
+}
+.search-head-tab-list{
+	float: left;
+	width: 33%;
+	text-align: center;
+	border-right:2rpx solid #ddd;
+	font-size: 28rpx;
+	color: #9c9c9e;
+}
+.search-head-tab-list.search-head-tab-list_chk{
+	color: #333;
+}
+.search-body{
+	background-color: #fff;
+	margin-top: 20rpx;
+	padding: 0rpx 30rpx;
+}
+.search-body-title{
+	display: flex;
+	justify-content: space-between;
+	height: 88rpx;
+	line-height: 88rpx;
+	border-bottom: 2rpx solid #eee;
+}
+.search-body-title-l{
+	color: #9c9c9e;
+	font-size: 24rpx;
+}
+.search-body-title-r{
+	color: #ef8052;
+	font-size: 24rpx;
+}
+.search-list{
+	display: flex;
+	justify-content: space-between;
+	line-height: 108rpx;
+	border-bottom: 2rpx solid #eee;
+}
+.search-list-l{
+	display: flex;
+}
+.search-list-l .van-icon,.search-list-r .van-icon{
+	font-size: 30rpx;
+	color: #b1b1b1;
+	vertical-align:text-bottom;
+}
+.search-list-l-text{
+	font-size: 28rpx;
+	color: #333;
+	margin-left: 20rpx;
+}
+.search-more{
+	line-height: 108rpx;
+	text-align: center;
+	color: #9c9c9e;
+	font-size: 24rpx;
+}

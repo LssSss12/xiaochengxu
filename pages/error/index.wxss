@@ -1,0 +1,11 @@
+.errBox{
+	padding: 40rpx 30rpx;
+}
+.errBox-t{}
+.errBox-t-form{
+	width: 100%;
+	background-color: #f7f8f9;
+	padding: 40rpx;
+	border-radius: 8rpx;
+	margin-bottom: 160rpx;
+}

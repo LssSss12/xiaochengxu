@@ -1,0 +1,71 @@
+<van-nav-bar
+  title="6月20日(今天)"
+  left-arrow
+	z-index="999"
+	fixed
+	safe-area-inset-top
+	placeholder="true"
+  bind:click-left="onClickLeft"
+/>
+
+<van-tabs class="tiku-tab" active="{{ active }}" line-width="14" sticky swipeable="true" bind:change="onChange">
+  <van-tab wx:for="{{tabs}}" data-id="{{item.id}}" wx:key="index" title="{{item.courseShortName}}"></van-tab>
+  </van-tabs>
+
+	<view class="day">
+		<view class="day-type" wx:if="{{isOne === 0}}">单项选择题</view>
+		<view class="day-type" wx:if="{{isOne === 1}}">多项选择题</view>
+		<view class="day-title">{{examObj.respondAppExamQuestionVo.questionsTitle}}</view>
+		<!-- 单选 -->
+		<view class="day-choose" wx:if="{{isOne === 0}}">
+			<view class="day-choose-list {{(curAnwser[0]===item.optionNo&&item.isRight=== 0&&analysis)?'err':''}} {{(item.isRight=== 1&&analysis)?'correct':''}}" wx:for="{{examObj.respondAppExamQuestionVo.examQuestionsOptions}}" wx:key="index" data-index="{{index}}" data-answer="{{item.optionNo}}" data-right="{{item.isRight}}" bindtap="chkAnwser">
+				<view class="day-choose-list-label">{{item.optionNo}}</view>
+				<view class="day-choose-list-text">{{item.optionContent}}</view>
+			</view>
+		</view>
+		<!-- 多选 -->
+		<view class="day-choose" wx:if="{{isOne === 1}}">
+			<view class="day-choose-list {{item.isChk&&!analysis?'chkGrey':''}}" wx:for="{{examObj.respondAppExamQuestionVo.examQuestionsOptions}}" wx:key="index" data-index="{{index}}" data-answer="{{item.optionNo}}" data-right="{{item.isRight}}" bindtap="chkAnwser">
+				<view class="day-choose-list-label {{!analysis?'chk-label':''}}" wx:if="{{!analysis}}">{{item.optionNo}}</view>
+				<view class="day-choose-list-label moreGreen" wx:if="{{analysis&&item.isRight=== 1&&!item.isChk}}">{{item.optionNo}}</view>
+				<view class="day-choose-list-label moreGreen" wx:if="{{analysis&&item.isRight=== 1&&item.isChk}}">
+					<van-icon name="success" style="font-size:44rpx;margin-top:12rpx;"/>
+				</view>
+				<view class="day-choose-list-label moreRed" wx:if="{{analysis&&item.isRight=== 0&&item.isChk}}">X</view>
+				<view class="day-choose-list-label" wx:if="{{analysis&&item.isRight=== 0&&!item.isChk}}">{{item.optionNo}}</view>
+				<view class="day-choose-list-text">{{item.optionContent}}</view>
+			</view>
+		</view>
+		<van-button class="{{curAnwser.length === 0?'grey':''}}" wx:if="{{isOne === 1}}" type="primary" block bindtap="getDayanalysis">查看解析</van-button>
+
+		<view wx:if="{{analysis}}" class="day-analysis">
+			<view class="day-analysis-part1 clear">
+				<view class="day-analysis-part1-part">
+					<text class="day-analysis-part1-text">正确答案 </text>
+					<text class="day-analysis-part1-ABCD"> {{answerObj.examQuestionsAnalysisEntity.rightAnswers}}</text>
+				</view>
+					<view class="day-analysis-part1-part">
+					<text class="day-analysis-part1-text">我的答案 </text>
+					<text class="day-analysis-part1-ABCD ABCD-err"> {{curAnwserStr}}</text>
+				</view>
+			</view>
+			<view class="day-analysis-part2">本题我做了 {{answerObj.doTotalTimes}} 次，作对了<text style="color:#f08052;"> {{answerObj.doRightTimes}} </text>次</view>
+			<view class="day-analysis-part3 clear">
+				<view class="day-analysis-part3-l">
+					<view class="day-analysis-part3-top">{{answerObj.doRightAccuracy}}%</view>
+					<view class="day-analysis-part3-bottom">全站正确率</view>
+				</view>
+				<view class="day-analysis-part3-r">
+					<view class="day-analysis-part3-top">{{answerObj.difficulty}}</view>
+					<view class="day-analysis-part3-bottom">测试题难度</view>
+				</view>
+			</view>
+
+			<view class="day-analysis-part4 clear">
+				<view class="day-analysis-part4-title">参考解析</view>
+				<view class="day-analysis-part4-analysis">{{answerObj.examQuestionsAnalysisEntity.analysisContent}}</view>
+				<view class="day-analysis-part4-title">相关考点</view>
+				<view class="day-analysis-part4-testing">2011202项目风险管理的工作流程></view>
+			</view>
+		</view>
+	</view>

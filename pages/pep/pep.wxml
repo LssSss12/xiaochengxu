@@ -1,0 +1,30 @@
+<van-nav-bar
+  title="历年真题"
+  left-arrow
+	z-index="999"
+	fixed
+	safe-area-inset-top
+	placeholder="true"
+  bind:click-left="onClickLeft"
+/>
+
+<view class="pep">
+	<!-- <view class="pep-t">
+		<view class="pep-t-l">
+			<view class="pep-t-l-t">继续上次练习</view>
+			<view class="pep-t-l-b">上次：1Z20109922建设工程项目策划</view>
+		</view>
+		<van-icon class="pep-t-r" name="arrow"/>
+	</view> -->
+
+	<view class="pep-b">
+		<view class="pep-b-list" wx:for="{{years}}" wx:key="index" data-index="{{index}}" data-id="{{item.examPaperMasterEntity.id}}" bindtap="startTopic">
+			<view class="pep-b-list-t">{{item.examPaperMasterEntity.examinationName}}</view>
+			<view class="pep-b-list-b">
+				<view>共 {{item.totalTitles}} 题</view>
+				<view>做过<text class="colorO"> {{item.totalToDo}} </text>次</view>
+				<view>上次得分<text class="colorG" style="font-size:34rpx"> {{item.lastTimeScore}} </text>分</view>
+			</view>
+		</view>
+	</view>
+</view>

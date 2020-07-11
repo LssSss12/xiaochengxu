@@ -1,0 +1,37 @@
+<van-nav-bar
+  title="交卷"
+  left-arrow
+	z-index="999"
+	fixed
+	safe-area-inset-top
+	placeholder="true"
+  bind:click-left="onClickLeft"
+/>
+
+<view class="topicCard">
+	<view class="topicCard-title">单项选择题</view>
+	<view class="card-part clear">
+		<view class="card-list {{item.isAnswer === 1?'card-list-chk':''}}" wx:for="{{cards}}" wx:key="index" data-index="{{item.serialNumber}}" bindtap="topicDetail" wx:if="{{item.isMultipleChoice === 0}}">{{item.serialNumber}}</view>
+
+	</view>
+	<view class="topicCard-title">多项选择题</view>
+	<view class="card-part clear">
+	<view class="card-list {{item.isAnswer === 1?'card-list-chk':''}}" wx:for="{{cards}}" wx:key="index" data-index="{{item.serialNumber}}" bindtap="topicDetail" wx:if="{{item.isMultipleChoice === 1}}">{{item.serialNumber}}</view>
+	</view>
+</view>
+
+<view class="card-btn">
+<van-button type="primary" block bindtap="jiaojuan">交卷并查看结果</van-button>
+</view>
+
+<view class="ls-modal  {{modal?'show':''}}">
+	<view class="ls-rdialog">
+		<view class="ls-content">
+			<view class="ls-message">{{answerMsg}}</view>
+		</view>
+		<view class="ls-footer">
+			<view class="ls-footer-n ls-btn" bindtap="cancleJ">取消</view>
+			<view class="ls-footer-y2 ls-btn" bindtap="confirmJ">确定</view>
+		</view>
+	</view>	
+</view>

@@ -1,0 +1,36 @@
+<van-nav-bar
+  title="快学题库 一级建造师"
+  left-arrow
+	z-index="999"
+	fixed
+	safe-area-inset-top
+	placeholder="true"
+  bind:click-left="onClickLeft"
+/>
+
+<view class="search">
+	<view class="search-head">
+		<van-search value="{{ value }}" shape="round" focus="true" clearable placeholder="请输入搜索关键词" />
+		<view class="clear search-head-tab">
+			<view class="search-head-tab-list {{tabId==='1'?'search-head-tab-list_chk':''}}" data-tabId="1" bindtap="chkTab">题目</view>
+			<view class="search-head-tab-list {{tabId==='2'?'search-head-tab-list_chk':''}}" data-tabId="2" bindtap="chkTab">正文</view>
+			<view class="search-head-tab-list {{tabId==='3'?'search-head-tab-list_chk':''}}" data-tabId="3" bindtap="chkTab">章节</view>
+		</view>
+	</view>
+	<view class="search-body">
+		<view class="search-body-title">
+			<text class="search-body-title-l">搜索记录</text>
+			<text class="search-body-title-r">清空</text>
+		</view>
+		<view class="search-list" wx:for="{{searchs}}" wx:key="index" data-id="{{item.id}}">
+			<view class="search-list-l">
+				<van-icon name="clock-o"></van-icon>
+				<text class="search-list-l-text">{{item.name}}</text>
+			</view>
+			<view class="search-list-r">
+				<van-icon name="cross" bind:click="delete"/>
+			</view>
+		</view>
+		<view class="search-more">显示更多搜索记录</view>
+	</view>
+</view>

@@ -1,117 +1,64 @@
 <van-nav-bar
   title="{{name}}"
   left-arrow
+	z-index="999"
+	fixed
+	safe-area-inset-top
+	placeholder="true"
   bind:click-left="onClickLeft"
 />
 
-<view class="box examDetail" wx:if="name === '一级建造师'">
+<view class="box examDetail" wx:if="{{name === '一级建造师'}}">
 	<view class="ed-title">公共课</view>
 	<view class="ed-part">
-		<view class="ed-part-list ed-part-list-chked" bindtap="checkSort">
+		<view class="ed-part-list {{item.chked?'ed-part-list-chked':''}}" wx:for="{{courses.publicList}}" wx:key="index" data-type="1" wx:key="index" data-key="{{index}}" data-type="1" data-id="{{item.id}}" bindtap="checkSort">
 			<image class="ed-part-list-icon" src="../../images/examdetailicon.png"></image>
-			<view class="ed-part-list-title">工程经济</view>
+			<view class="ed-part-list-title">{{item.courseFullName}}</view>
 			<image class="ed-part-list-chk-icon" src="../../images/selected.png"></image>
-		</view>
-		<view class="ed-part-list">
-			<image class="ed-part-list-icon" src="../../images/examdetailicon.png"></image>
-			<view class="ed-part-list-title">法律法规</view>
-		</view>
-		<view class="ed-part-list">
-			<image class="ed-part-list-icon" src="../../images/examdetailicon.png"></image>
-			<view class="ed-part-list-title">项目管理</view>
 		</view>
 	</view>
 
 	<view class="ed-title">专业实务</view>
-	<view class="ed-part">
-		<view class="ed-part-list">
+	<view class="ed-part" style="	justify-content:start;">
+		<view class="ed-part-list {{item.chked?'ed-part-list-chked':''}}" wx:for="{{courses.majorList}}" wx:key="index" data-key="{{index}}" data-type="2" data-id="{{item.id}}" bindtap="checkSort">
 			<image class="ed-part-list-icon" src="../../images/examdetailicon.png"></image>
-			<view class="ed-part-list-title">建筑工程</view>
-		</view>
-		<view class="ed-part-list">
-			<image class="ed-part-list-icon" src="../../images/examdetailicon.png"></image>
-			<view class="ed-part-list-title">机电工程</view>
-		</view>
-		<view class="ed-part-list">
-			<image class="ed-part-list-icon" src="../../images/examdetailicon.png"></image>
-			<view class="ed-part-list-title">市政工程</view>
-		</view>
-		<view class="ed-part-list">
-			<image class="ed-part-list-icon" src="../../images/examdetailicon.png"></image>
-			<view class="ed-part-list-title">公路工程</view>
-		</view>
-		<view class="ed-part-list">
-			<image class="ed-part-list-icon" src="../../images/examdetailicon.png"></image>
-			<view class="ed-part-list-title">通信广电</view>
-		</view>
-		<view class="ed-part-list">
-			<image class="ed-part-list-icon" src="../../images/examdetailicon.png"></image>
-			<view class="ed-part-list-title">水利水电</view>
+			<view class="ed-part-list-title">{{item.courseFullName}}</view>
+				<image class="ed-part-list-chk-icon" src="../../images/selected.png"></image>
 		</view>
 	</view>
-	<van-button class="ed-btn" type="primary" block color="#F36210">确 定</van-button>
+	<van-button class="ed-btn" type="primary" block color="#F36210" bindtap="comfirm">确 定</van-button>
+
 </view>
 
-<view class="box examDetail" wx:if="name === '二级建造师'">
+<view class="box examDetail" wx:if="{{name === '二级建造师'}}">
 	<view class="ed-title">公共课</view>
-		<view class="ed-part">
-			<view class="ed-part-list2 ed-part-list-chked" bindtap="checkSort">
+		<view class="ed-part" style="justify-content: space-between;">
+			<view class="ed-part-list2 {{item.chked?'ed-part-list-chked':''}}" wx:for="{{courses.publicList}}" wx:key="index" data-key="{{index}}" data-type="1" data-id="{{item.id}}" bindtap="checkSort">
 				<image class="ed-part-list-icon" src="../../images/examdetailicon.png"></image>
-				<view class="ed-part-list-title">法律法规</view>
-				<image class="ed-part-list-chk-icon" src="../../images/selected.png"></image>
-			</view>
-			<view class="ed-part-list2 ed-part-list-chked" bindtap="checkSort">
-				<image class="ed-part-list-icon" src="../../images/examdetailicon.png"></image>
-				<view class="ed-part-list-title">施工管理</view>
+				<view class="ed-part-list-title">{{item.courseFullName}}</view>
 				<image class="ed-part-list-chk-icon" src="../../images/selected.png"></image>
 			</view>
 		</view>
 	<view class="ed-title">专业实务</view>
-	<view class="ed-part">	
-		<view class="ed-part-list ed-part-list-chked" bindtap="checkSort">
+	<view class="ed-part" style="	justify-content:start;">	
+		<view class="ed-part-list {{item.chked?'ed-part-list-chked':''}}" wx:for="{{courses.majorList}}" wx:key="index" data-key="{{index}}" data-type="2" wx:key="index" data-id="{{item.id}}" bindtap="checkSort">
 			<image class="ed-part-list-icon" src="../../images/examdetailicon.png"></image>
-			<view class="ed-part-list-title">建筑工程</view>
-			<image class="ed-part-list-chk-icon" src="../../images/selected.png"></image>
-		</view>
-			<view class="ed-part-list ed-part-list-chked" bindtap="checkSort">
-			<image class="ed-part-list-icon" src="../../images/examdetailicon.png"></image>
-			<view class="ed-part-list-title">机电工程</view>
-			<image class="ed-part-list-chk-icon" src="../../images/selected.png"></image>
-		</view>
-			<view class="ed-part-list ed-part-list-chked" bindtap="checkSort">
-			<image class="ed-part-list-icon" src="../../images/examdetailicon.png"></image>
-			<view class="ed-part-list-title">市政工程</view>
-			<image class="ed-part-list-chk-icon" src="../../images/selected.png"></image>
-		</view>
-			<view class="ed-part-list ed-part-list-chked" bindtap="checkSort">
-			<image class="ed-part-list-icon" src="../../images/examdetailicon.png"></image>
-			<view class="ed-part-list-title">公路工程</view>
-			<image class="ed-part-list-chk-icon" src="../../images/selected.png"></image>
-		</view>
-			<view class="ed-part-list ed-part-list-chked" bindtap="checkSort">
-			<image class="ed-part-list-icon" src="../../images/examdetailicon.png"></image>
-			<view class="ed-part-list-title">水利水电</view>
+			<view class="ed-part-list-title">{{item.courseFullName}}</view>
 			<image class="ed-part-list-chk-icon" src="../../images/selected.png"></image>
 		</view>
 	</view>
+	<van-button class="ed-btn" type="primary" block color="#F36210" bindtap="comfirm">确 定</van-button>
+
 </view>
 
-<view class="box examDetail" wx:if="name === '一级消防工程师'">
+<view class="box examDetail" wx:if="{{name === '一级消防工程师'}}">
 	<view class="ed-part">
-		<view class="ed-part-list3 ed-part-list-chked" bindtap="checkSort">
+		<view class="ed-part-list3 {{item.chked?'ed-part-list-chked':''}}" wx:for="{{courses.publicList}}" wx:key="index"  data-key="{{index}}" data-type="1" wx:key="index" data-id="{{item.id}}" bindtap="checkSort">
 				<image class="ed-part-list-icon" src="../../images/examdetailicon.png"></image>
-				<view class="ed-part-list-title">法律法规</view>
+				<view class="ed-part-list-title">{{item.courseFullName}}</view>
 				<image class="ed-part-list-chk-icon" src="../../images/selected.png"></image>
-		</view>
-		<view class="ed-part-list3 ed-part-list-chked" bindtap="checkSort">
-				<image class="ed-part-list-icon" src="../../images/examdetailicon.png"></image>
-				<view class="ed-part-list-title">法律法规</view>
-				<image class="ed-part-list-chk-icon" src="../../images/selected.png"></image>
-		</view>
-		<view class="ed-part-list3 ed-part-list-chked" bindtap="checkSort">
-					<image class="ed-part-list-icon" src="../../images/examdetailicon.png"></image>
-					<view class="ed-part-list-title">法律法规</view>
-					<image class="ed-part-list-chk-icon" src="../../images/selected.png"></image>
 		</view>
 	</view>
+	<van-button class="ed-btn" type="primary" block color="#F36210" bindtap="comfirm">确 定</van-button>
+
 </view>

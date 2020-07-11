@@ -15,20 +15,23 @@
 }
 .ed-part-list{
 	text-align: center;
-	background-color: #fff;
+	background-color: #f7f7f7;
 	height:264rpx;
 	width: 216rpx;
 	border-radius: 8rpx;
 	margin-bottom: 20rpx;
+	margin-right: 10rpx;
+	border: 2rpx solid #f7f7f7;
 }
 .ed-part-list2{
 	display: flex;
-	background-color: #fff;
+	background-color: #f7f7f7;
 	height:168rpx;
 	line-height:168rpx;
 	width: 49%;
 	border-radius: 8rpx;
 	margin-bottom: 20rpx;
+	border: 2rpx solid #f7f7f7;
 }
 .ed-part-list2 .ed-part-list-icon{
 	margin:50rpx 40rpx;
@@ -36,17 +39,18 @@
 .ed-part-list3{
 	width: 100%;
 	display: flex;
-	background-color: #fff;
+	background-color: #f7f7f7;
 	height:168rpx;
 	line-height:168rpx;
 	border-radius: 8rpx;
 	margin-bottom: 20rpx;
+	border: 2rpx solid #f7f7f7;
 }
 .ed-part-list3 .ed-part-list-icon{
 	margin:50rpx 40rpx;
 }
 .ed-part-list-chked{
-	border: 2rpx solid #FFB57F;
+	border: 2rpx solid #FFB570;
 	position: relative;
 	background-color: #FFF7F0;
 }

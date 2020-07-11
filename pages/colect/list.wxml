@@ -1,0 +1,74 @@
+<van-nav-bar
+  title="管理"
+  left-arrow
+	z-index="999"
+	fixed
+	safe-area-inset-top
+	placeholder="true"
+  bind:click-left="onClickLeft"
+/>
+<view class="section">
+<!-- 一级 -->
+<view class="section-level1" wx:for="{{sections}}" wx:key="id" wx:for-item="level1" wx:for-index="index1">
+	<view class="section-level-con" data-level="1" data-index="{{index1}}" catch:tap="slectDown">
+		<view>
+			<view class="section-level-con-top">
+				<text class="section-level1-top-icon" wx:if="{{!level1.show}}">+</text>
+				<text class="section-level1-top-icon" wx:if="{{level1.show}}">-</text>
+				<text class="section-level1-title">{{level1.title}}</text>
+			</view>
+			<view>
+				<text class="section-level-count">共 {{level1.count}} 道题</text>
+			</view>
+		</view>
+		<view><van-icon class="edit-icon" name="edit" catchtap="startAction" /></view>
+	</view>
+	<!-- 二级 -->
+	<view class="section-level2" wx-if="{{level1.show}}" wx:for="{{level1.children}}" wx:for-index="index2" wx:key="id" wx:for-item="level2">
+		<view class="section-level-con" data-level="2" data-parent1="{{index1}}" data-index="{{index2}}" catch:tap="slectDown">
+			<view>
+				<view class="section-level-con-top">
+					<van-icon class="{{level2.show?'rotate':''}}" name="arrow-down" />
+					<text class="section-level2-title">{{level2.title}}</text>
+				</view>
+				<view>
+					<text class="section-level-count">共 {{level1.count}} 道题</text>
+				</view>
+			</view>
+			<view><van-icon class="edit-icon" name="edit" catchtap="startAction" /></view>
+		</view>
+		<!-- 三级 -->
+		<view class="section-level3" wx-if="{{level2.show}}" wx:for="{{level2.children}}" wx:for-index="index3"  wx:key="id" wx:for-item="level3">
+			<view class="section-level-con" data-level="3" data-parent1="{{index1}}" data-parent2="{{index2}}" data-index="{{index3}}" catch:tap="slectDown">
+				<view>
+					<view class="section-level-con-top">
+						<van-icon class="section-level3-top-icon" name="circle" />
+						<text class="section-level2-title">{{level3.title}}</text>
+					</view>
+					<view>
+						<text class="section-level-count">共 {{level2.count}} 道题</text>
+					</view>
+				</view>
+				<view><van-icon class="edit-icon" name="edit" catchtap="startAction" /></view>
+			</view>
+				<!-- 四级 -->
+			<view class="section-level4" wx-if="{{level3.show}}" wx:for="{{level3.children}}" wx:for-index="index4"  wx:key="id" wx:for-item="level4">
+				<view class="section-level-con" data-parent1="{{index1}}" data-parent2="{{index2}}" data-parent3="{{index3}}" data-index="{{index4}}" catch:tap="slectDown">
+					<view>
+						<view class="section-level-con-top">
+							<van-icon class="section-level3-top-icon" name="circle" />
+							<text class="section-level2-title">{{level4.title}}</text>
+						</view>
+						<view>
+							<text class="section-level-count">共 {{level4.count}} 道题</text>
+						</view>
+					</view>
+					<view><van-icon class="edit-icon" catchtap="startAction" name="edit" /></view>
+				</view>
+			</view>	
+		</view>	
+	</view>
+</view>
+</view>
+
+

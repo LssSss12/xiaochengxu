@@ -1,0 +1,69 @@
+.section{
+	height: 100%;
+	background-color: #f7f7f7;
+}
+
+.section-level1{
+	background-color: #fff;
+	margin-bottom: 40rpx;
+	
+}
+.section-level1-top-icon{
+	background: #fa6228;
+	color: #fff;
+	display: inline-block;
+	width: 30rpx;
+	height: 30rpx;
+	line-height: 26rpx;
+	text-align: center;
+}
+.section-level-con{
+	display: flex;
+	justify-content: space-between;
+	padding: 40rpx 32rpx;
+}
+.section-level-con-top .rotate .van-icon{
+	transform: rotate(180deg);
+	color: #fa6228!important;
+}
+.section-level1-title{
+	font-size: 32rpx;
+	color: #333;
+	margin-left: 20rpx;
+	font-weight: 600;
+}
+.section-level2-title{
+	font-size: 28rpx;
+	color: #333;
+	margin-left: 20rpx;
+}
+.section-level-con-top{
+	margin-bottom: 20rpx;
+}
+.section-level3-top-icon{
+	font-size: 16rpx;
+background: #c5c5c7;
+border-radius: 50%;
+}
+.section-level-con-top .van-icon{
+	color: #c5c5c7;
+}
+.section-level-count{
+	font-size: 28rpx;
+	color: #9c9e9e;
+	margin-right:32rpx;
+	margin-left: 40rpx;
+}
+.section-level-accuracy{
+	font-size: 28rpx;
+	color: #76d08c;
+}
+.section-level4{
+	padding-left: 64rpx;
+}
+.edit-icon{
+	color: #fa6228;
+font-size: 44rpx;
+margin-top: 28rpx;
+
+}

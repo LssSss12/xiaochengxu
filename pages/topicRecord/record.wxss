@@ -1,0 +1,73 @@
+.records{
+	padding: 40rpx 30rpx;
+}
+.list{
+	margin-bottom: 40rpx;
+}
+.list-date{
+	display: flex;
+	margin-bottom: 12rpx;
+}
+.list-date .van-icon{
+	font-size: 28rpx;
+	color: #9c9c9e;
+	margin-right: 14rpx;
+}
+.list-date-time{
+	font-size: 28rpx;
+	color: #9c9c9e;
+}
+.list-item{
+	height: 164rpx;
+	margin-left: 34rpx;
+	position: relative;
+	background-color: #fff;
+	box-shadow: 0rpx 4rpx 16rpx #dfe1e5;
+	padding:30rpx;
+	box-sizing: border-box;
+	margin-bottom: 40rpx;
+}
+.record-line{
+	width: 2rpx;
+	height: 100%;
+	position: absolute;
+	top: 0rpx;
+	left: -23rpx;
+	background: #FFD8C8;
+}
+.record-point{
+	width: 18rpx;
+	height: 18rpx;
+	background: #F36210;
+	border-radius: 50%;
+	position: absolute;
+	top: 67rpx;
+	left: -31rpx;
+}
+.list-item-box{
+	display: flex;
+	height: 100%;
+}
+.list-item-box-l{
+	flex: 1;
+}
+.list-item-box-l-text{
+	font-size: 32rpx;
+	color: #333;
+	margin-bottom: 24rpx;
+}
+.list-item-box-l-count{
+	font-size: 28rpx;
+	color: #9c9c9e;
+}
+.list-item-box-r{
+	line-height: 104rpx;
+}
+.list-item-box-r .van-icon{
+	color: #9c9c9e;
+}
+.van-tag{
+	background-color: #eee!important;
+	color: #9c9c9e!important;
+	margin-left: 10rpx;
+}

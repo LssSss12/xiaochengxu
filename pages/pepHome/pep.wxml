@@ -1,0 +1,35 @@
+<van-nav-bar
+  title="历年真题"
+  left-arrow
+	z-index="999"
+	fixed
+	safe-area-inset-top
+	placeholder="true"
+  bind:click-left="onClickLeft"
+/>
+<view class="pep">
+	<view class="pep-box">
+		<view class="pep-box-t">
+			<view class="pep-box-title">{{obj.examPaperMasterEntity.examinationName}}</view>
+		</view>
+		<view class="pep-box-b">
+			<view class="pep-box-b-list">
+				<view class="pep-box-b-list-l">题目数量</view>
+				<view class="pep-box-b-list-r">{{obj.totalTitles}}道</view>
+			</view>
+			<view class="pep-box-b-list">
+				<view class="pep-box-b-list-l">总分</view>
+				<view class="pep-box-b-list-r">120分</view>
+			</view>
+			<view class="pep-box-b-list">
+				<view class="pep-box-b-list-l">考试时长</view>
+				<view class="pep-box-b-list-r">45分钟</view>
+			</view>
+			<view class="pep-box-b-list">
+				<view class="pep-box-b-list-l">上次得分</view>
+				<view class="pep-box-b-list-r">{{obj.lastTimeScore}}分</view>
+			</view>
+		</view>
+	</view>
+	<van-button type="primary" block bindtap="jiaojuan" bindtap="goTipic">开始答题</van-button>
+</view>

@@ -1,0 +1,46 @@
+.pep{
+	padding: 40rpx 30rpx;
+}
+.pep-t{
+	display: flex;
+	justify-content: space-between;
+	padding: 40rpx;
+	background-color: #f7f7f7;
+}
+.pep-t-r .van-icon{
+	color: #9c9c9e;
+}
+.pep-t-l-b{
+	font-size: 28rpx;
+	color: #9c9c9e;
+	margin-top: 24rpx;
+}
+.pep-b{
+	margin-top: 40rpx;
+}
+.pep-b-list{
+	border-top: 2rpx solid #f08549;
+	box-sizing: border-box;
+	padding: 0rpx 60rpx;
+	width: 100%;
+	height: 240rpx;
+	box-shadow: 0rpx 0rpx 10rpx #ddd;
+	margin-bottom: 40rpx;
+}
+.pep-b-list-t{
+	text-align: center;
+	border-bottom: 2rpx solid #ddd;
+	height: 120rpx;
+	line-height: 120rpx;
+	font-size: 36rpx;
+	color: #333;
+	font-weight: bold;
+}
+.pep-b-list-b{
+	display: flex;
+	justify-content: space-between;
+}
+.pep-b-list-b>view{
+	line-height:118rpx;
+	font-size: 28rpx;
+}

@@ -1,16 +1,12 @@
 <van-nav-bar
-  title="题库"
+  title="开学题库({{title}})"
 />
 
 <van-tabs class="tiku-tab" active="{{ active }}" line-width="14" sticky swipeable="true" bind:change="onChange">
-    <van-tab title="经济"></van-tab>
-    <van-tab title="法规"></van-tab>
-    <van-tab title="管理"></van-tab>
-    <van-tab title="建筑实务"></van-tab>
-    <van-tab title="222"></van-tab>
+    <van-tab wx:for="{{tabs}}" data-id="{{item.id}}" wx:key="index" title="{{item.courseShortName}}"></van-tab>
   </van-tabs>
   <view class="tiku-head">
-      <van-search class="tiku-head-l" value="{{ search }}" placeholder="请输入搜索关键词" />
+      <van-search class="tiku-head-l" value="{{ search }}" bindtap="goSearch" placeholder="请输入搜索关键词" />
       <view class="tiku-head-r">
         <view class="tiku-head-r-text">距离一建考试还有</view>
         <view class="tiku-head-r-date">
@@ -27,25 +23,64 @@
       <view style="display:flex">
         <view class="tiku-part1-con-chart">
             <van-circle
-            value="{{ value }}"
+            value="{{value}}"
             layer-color="#eeeeee"
-            color="#ee0a24"
-            text="颜色定制"
-          />
-          <view style="position:absolute;top:0px;left:0px;">
-            <view>68%</view>
-            <view>正确率</view>
-          </view>
+            color="#f08052"
+            size="100"
+            stroke-width="10"
+          >
+          <Slots>
+            <view style="font-size:40rpx;color:#f08052">{{obj.userPastChapter.accuracy}}%</view>
+            <view><text class="report-top-circle-text2">正确率</text></view>
+          </Slots>	
+        </van-circle>
         </view>
-        <view class="tiku-part1-con">
+        <view class="tiku-part1-con" bindtap="goSection">
           <view>
-            <text style="font-size:28rpx;">继续上次练习</text>
-            <text style="font-size:24rpx;color:#FF7944;">68</text>
-            <text style="font-size:24rpx;color:#9C9C9E;">/100</text>
+            <text style="font-size:28rpx;margin-right:10rpx;">开始练习</text>
           </view>
-          <view style="font-size:24rpx;color:#9C9C9E;margin-top:24rpx;">上次：建设工程项目策划</view>
+          <view style="font-size:24rpx;color:#9C9C9E;margin-top:24rpx;">加油，童鞋</view>
+          <van-icon name="arrow"></van-icon>
         </view>
       </view>
+    </view>
+    <view class="tiku-part2">
+      <view class="tiku-part2-list" style="border-left:4rpx solid #f08052;" bindtap="goPep">
+        <view class="tiku-part2-list-l">历年真题</view>
+        <view class="tiku-part2-list-r">
+          <view class="tiku-part2-list-r-t">
+            <text class="tiku-part2-list-r-t-text">正确率 </text>
+            <text  class="tiku-part2-list-r-t-num" style="color:#f08052;"> {{obj.historyPastChapter.accuracy}}%</text>
+          </view>
+          <view class="tiku-part2-list-r-b">已做{{obj.historyPastChapter.haveNum}}套/共{{obj.historyPastChapter.totalNum}}套</view>
+        </view>
+        <image src="../../images/tiku-back1.png"></image>
+      </view>
+      <view class="tiku-part2-list" style="border-left:4rpx solid #3d8ec7;">
+        <view class="tiku-part2-list-l">智能速练</view>
+        <view class="tiku-part2-list-r">
+          <view class="tiku-part2-list-r-t">
+            <text class="tiku-part2-list-r-t-text">正确率 </text>
+            <text  class="tiku-part2-list-r-t-num" style="color:#3d8ec7;"> {{obj.intelligentExercise.accuracy}}%</text>
+          </view>
+          <view class="tiku-part2-list-r-b">已做{{obj.intelligentExercise.haveNum}}套/共{{obj.intelligentExercise.totalNum}}套</view>
+        </view>
+          <image src="../../images/tiku-back2.png"></image>
+      </view>
+      <view class="tiku-part2-list" style="border-left:4rpx solid #d35b3a;" bindtap="goError">
+        <view class="tiku-part2-list-l">错题集</view>
+        <view class="tiku-part2-list-r" style="margin:0rpx;">
+          <view class="tiku-part2-list-r-t" style="line-height:168rpx;">
+            <text class="tiku-part2-list-r-t-text">错误修正 </text>
+            <text  class="tiku-part2-list-r-t-num"> {{obj.userErrorNum}}</text>
+          </view>
+        </view>
+        <image src="../../images/tiku-back3.png"></image>
+      </view>
+    </view>
+    <view class="tiku-part3">
+      <image class="tiku-part3-icon" src="../../images/everyday_subject.png"></image>
+      <view class="tiku-part3-txt" bindtap="dayTopic">「{{obj.examQuestionsTitleEntity.questionsNo}}」{{obj.examQuestionsTitleEntity.questionsTitle}}</view>
     </view>
   </view>
 

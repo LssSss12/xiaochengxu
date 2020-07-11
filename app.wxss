@@ -1,16 +1,102 @@
 page{
   height: 100%;
-  background-color: #f7f7f7;
-  border-box: box-sizing;
+  background-color: #ffffff;
 }
+view, scroll-view, swiper, button, input, textarea, label, navigator, image {
+  /* box-sizing: border-box; */
+}
+  
 .box{
 	padding: 56rpx 30rpx 56rpx 30rpx;
 }
+.clear:after{
+  content: "020"; 
+  display: block; 
+  height: 0; 
+  clear: both; 
+  visibility: hidden;  
+  }
+
+.clear {
+  zoom: 1; 
+  }
 .bar-index--van-nav-bar__arrow{
   color:#333!important;
   font-size: 18px!important;
+  bottom:var(--padding-md,14px);
 }
-.van-nav-bar{
-  background-color: #f7f7f7!important;
+.van-button--primary{
+  background-color: #e36a30!important;
+  border-color: #e36a30!important;
+  margin-top: 80rpx;
+  font-size: 32rpx!important;
+}
+/* ==================
+         模态窗口
+ ==================== */
+ .ls-modal{
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 1110;
+	opacity: 0;
+	outline: 0;
+	text-align: center;
+	-ms-transform: scale(1.185);
+	transform: scale(1.185);
+	backface-visibility: hidden;
+	perspective: 2000rpx;
+	background: rgba(0, 0, 0, 0.6);
+	transition: all 0.3s ease-in-out 0s;
+	pointer-events: none;
+ }
+ .ls-modal.show{
+	opacity: 1;
+	transition-duration: 0.3s;
+	-ms-transform: scale(1);
+	transform: scale(1);
+	overflow-x: hidden;
+	overflow-y: auto;
+	pointer-events: auto;	
+ }
+ .ls-modal::before {
+	content: "\200B";
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+}
+ .ls-rdialog{
+	position: relative;
+	display: inline-block;
+	vertical-align: middle;
+	margin-left: auto;
+	margin-right: auto;
+	width: 580rpx;
+	max-width: 100%;
+	background-color: #f8f8f8;
+	border-radius: 10rpx;
+	overflow: hidden;
+ }
+ .ls-content{
+	padding:40rpx 0rpx
+}
+.ls-title{
+font-size: 36rpx;
+color:#181C27;
+margin-bottom: 32rpx;
+}
+.ls-message{
+color:#535C71;
+font-size: 30rpx;
+width: 500rpx;
+margin: 0rpx auto;
+}
+.colorO{
+	color: #e36a30;
+}
+.colorG{
+	color: #76d08c;
 }
   

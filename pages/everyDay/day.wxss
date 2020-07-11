@@ -1,0 +1,163 @@
+.day{
+	padding:28rpx 30rpx;
+	box-sizing: border-box;
+}
+.day-type{
+	width:160rpx;
+	height:40rpx;
+	line-height: 40rpx;
+	text-align: center;
+	background-color: #f7f7f7;
+	font-size: 24rpx;
+	color: #9c9c9e;
+}
+.day-title{
+	margin-top: 40rpx;
+	font-size: 32rpx;
+	color: #333;
+}
+.day-choose{
+	margin-top: 40rpx;
+}
+.van-ellipsis{
+	font-size: 32rpx;
+}
+.day-choose-list{
+	display: flex;
+}
+.day-choose-list-label{
+	width: 68rpx;
+	height:68rpx;
+	text-align: center;
+	border-radius: 50%;
+	line-height: 68rpx;
+	border:2rpx solid #ddd;
+	color: #9c9c9e;
+	font-size: 32rpx;
+	font-weight: bold;
+	margin:0rpx 20rpx 28rpx 0rpx;
+}
+.day-choose-list-text{
+	font-size: 32rpx;
+	color: #666;
+	line-height: 72rpx;
+	width: 600rpx;
+}
+.day-analysis{
+
+}
+.day-analysis-part1{
+	margin: 80rpx 0rpx 26rpx 0rpx;
+}
+.day-analysis-part1-part{
+	float: left;
+	width: 50%;
+	text-align: center;
+}
+.day-analysis-part1-text{
+	color: #333;
+	font-size: 32rpx;
+}
+.day-analysis-part1-ABCD{
+	color: #76d08c;
+}
+.ABCD-err{
+	color: #cc4842!important;
+}
+.day-analysis-part2{
+	width: 550rpx;
+	height: 40rpx;
+	background-color: #f7f7f7;
+	font-size: 24rpx;
+	color: #9c9c9e;
+	text-align: center;
+	line-height: 40rpx;
+	margin: 0rpx auto;
+	border-radius: 28rpx;
+}
+.day-analysis-part3{
+	width: 690rpx;
+	height:160rpx;
+	background-color: #fef6f4;
+	margin-top: 40rpx;
+	padding: 20rpx;
+	text-align: center;
+	box-sizing: border-box!important;
+}
+.day-analysis-part3-l{
+	width: 323rpx;
+	float: left;
+	border-right: 2rpx solid #f9d7c9;
+	height: 100%;
+}
+.day-analysis-part3-r{
+	width: 325rpx;
+	float: left;
+	height: 100%;
+}
+.day-analysis-part3-top{
+	font-size: 40rpx;
+	color: #f08052;
+	margin: 14rpx 0rpx 10rpx 0rpx;
+}
+.day-analysis-part3-bottom{
+	font-size: 24rpx;
+	color:#333;
+}
+.day-analysis-part4-title{
+	font-size: 32rpx;
+	color: #333;
+	padding-left: 20rpx;
+	border-left: 6rpx solid #f08052;
+	margin:40rpx 0rpx 30rpx 0rpx;
+}
+.day-analysis-part4-analysis{
+	font-size: 24rpx;
+	color: #666;
+}
+.day-analysis-part4-testing{
+	float: left;
+	background-color: #f7f7f7;
+	font-size: 24rpx;
+	color: #9c9c9e;
+	text-align: center;
+	margin: 0rpx auto;
+	padding: 8rpx 20rpx;
+	border-radius: 28rpx;
+}
+.err .day-choose-list-label{
+	background-color: #cc4842!important;
+	color: #ffffff!important;
+	border-color: #cc4842!important;
+}
+.err .day-choose-list-text{
+	color: #cc4842!important;
+}
+.correct .day-choose-list-label{
+	background-color: #76d08c!important;
+	color: #ffffff!important;
+	border-color: #76d08c!important;
+}
+.correct .day-choose-list-text{
+	color: #76d08c!important;
+}
+.moreGreen{
+	background-color: #76d08c!important;
+	color: #ffffff!important;
+	border-color: #76d08c!important;
+}
+.moreRed{
+	background-color: #cc4842!important;
+	color: #ffffff!important;
+	border-color: #cc4842!important;
+}
+.chkGrey .chk-label{
+	background-color:#abb3c7 ;
+	color: #ffffff;
+	border-color: #abb3c7;
+}
+
+.grey .van-button{
+	background-color: #E2E2E2!important;
+	border-color:  #E2E2E2!important;
+}

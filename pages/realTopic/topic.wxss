@@ -1,0 +1,152 @@
+.topic{
+
+}
+.topic-time{
+	display: flex;
+	height: 52rpx;
+	background: #FFF6F3;
+	line-height: 52rpx!important;
+	justify-content:center;
+  align-items:center;
+}
+.topic-time .van-icon{
+	font-size: 32rpx;
+	color: #9c9e9e;
+	margin-right: 10rpx;
+	color: #fa6228;
+}
+.van-count-down{
+	font-size: 28rpx;
+	line-height: 52rpx!important;
+	color: #fa6228!important;
+}
+.topic-title{
+	display: flex;
+	justify-content: space-between;
+	padding: 32rpx;
+}
+.topic-title-l{
+	color: #6c6c6c;
+	font-size: 28rpx;
+}
+.topic-title-r{
+	color: #6c6c6c;
+	font-size: 28rpx;
+}
+.topic-progress{
+	width: 100%;
+	height: 6rpx;
+	background: #f7f7f7;
+}
+.topic-progress-curr{
+	background: #e36a30;
+	height: 6rpx;
+}
+.day{
+	padding:28rpx 30rpx;
+	box-sizing: border-box;
+}
+.day-type{
+	width:160rpx;
+	height:40rpx;
+	line-height: 40rpx;
+	text-align: center;
+	background-color: #f7f7f7;
+	font-size: 24rpx;
+	color: #9c9c9e;
+}
+.day-title{
+	margin-top: 40rpx;
+	font-size: 32rpx;
+	color: #333;
+}
+.day-choose{
+	margin-top: 40rpx;
+}
+.van-ellipsis{
+	font-size: 32rpx;
+}
+.day-choose-list{
+	display: flex;
+}
+.day-choose-list-label{
+	width: 68rpx;
+	height:68rpx;
+	text-align: center;
+	border-radius: 50%;
+	line-height: 68rpx;
+	border:2rpx solid #ddd;
+	color: #9c9c9e;
+	font-size: 32rpx;
+	font-weight: bold;
+	margin:0rpx 20rpx 28rpx 0rpx;
+}
+.day-choose-list-text{
+	font-size: 32rpx;
+	color: #666;
+	line-height: 72rpx;
+	width: 600rpx;
+}
+ .ls-btn{
+	height:82rpx;
+	width: 510rpx;
+	line-height: 82rpx;
+	background-color: #e36a30;
+	color: #fff;
+	margin: 0px auto;
+	border-radius: 8rpx;
+	margin-bottom: 40rpx;
+ }
+ .topic-b{
+	 position:fixed;
+	 bottom: 0rpx;
+	 left: 0rpx;
+	 width: 100%;
+	 height: 100rpx;
+	 border-top: 2rpx solid #ddd;
+	 padding-top: 20rpx;
+ }
+ .topic-b>view{
+	 float: right;
+	 line-height: 60rpx;
+	 margin-right: 30rpx;
+ }
+ .topic-b> .jiao{
+	 background-color: #e36a30;
+	 height: 60rpx;
+	 line-height: 60rpx;
+	 width: 136rpx;
+	 color: #fff;
+	 text-align: center;
+	 border-radius: 40rpx;
+	 margin-left: 20rpx;
+ }
+ .colected .van-icon{
+	 color: #e36a30;
+ }
+ .chkGrey{
+	background-color:#abb3c7 ;
+	color: #ffffff;
+	border-color: #abb3c7;
+}
+.collect{
+	display: flex;
+}
+.collect .van-icon {
+	margin-right: 8rpx;
+}
+.share button{
+	background-color: #fff !important;
+	height: 60rpx;
+	line-height: 60rpx;
+}
+.share button:after{
+	border:none;
+}
+.title-label{
+	font-size: 24rpx;
+color: #9c9c9e;
+background: #f7f7f7;
+padding: 8rpx 20rpx;
+border-radius: 34rpx;
+}

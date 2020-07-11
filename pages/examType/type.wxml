@@ -1,15 +1,26 @@
+
 <van-nav-bar
-  title="请选择考试类型"
-  left-arrow
-  bind:click-left="onClickLeft"
+ title="选择考试类型"
 />
 
 <view class="box">
- <view class="exam-list" wx:for="{{types}}" wx:key="index" data-name="{{item.name}}" bindtap="toSort">
-  <image class="exam-list-img" wx:if="{{index === 0}}" src="../../images/examType1.png"></image>
-  <image class="exam-list-img" wx:if="{{index === 1}}" src="../../images/examType2.png"></image>
-  <image class="exam-list-img" wx:if="{{index === 2}}" src="../../images/examType3.png"></image>
-  <view class="exam-list-name">{{item.name}}</view>
+ <view class="exam-list" data-name="一级建造师" bindtap="toSort">
+  <image class="exam-list-img" src="../../images/examType1.png"></image>
+  <view class="exam-list-name">一级建造师</view>
+  <image class="exam-list-icon1" src="../../images/examTypeIcon1.png"></image>
+  <image class="exam-list-icon2" src="../../images/examTypeIcon2.png"></image>
+ </view>
+
+  <view class="exam-list"data-name="二级建造师" bindtap="toSort">
+  <image class="exam-list-img" src="../../images/examType2.png"></image>
+  <view class="exam-list-name">二级建造师</view>
+  <image class="exam-list-icon1" src="../../images/examTypeIcon1.png"></image>
+  <image class="exam-list-icon2" src="../../images/examTypeIcon2.png"></image>
+ </view>
+
+  <view class="exam-list" data-name="一级消防工程师" bindtap="toSort">
+  <image class="exam-list-img" src="../../images/examType3.png"></image>
+  <view class="exam-list-name">一级消防工程师</view>
   <image class="exam-list-icon1" src="../../images/examTypeIcon1.png"></image>
   <image class="exam-list-icon2" src="../../images/examTypeIcon2.png"></image>
  </view>
