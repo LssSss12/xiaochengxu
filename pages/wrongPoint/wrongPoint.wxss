@@ -1,0 +1,66 @@
+/* pages/wrongPoint/wrongPoint.wxss */
+.point-box{
+  padding-bottom: 50rpx;
+}
+.point-time{
+  margin: 40rpx 0 16rpx 30rpx;
+}
+.point-time image{
+  width:24rpx;
+  height:24rpx;
+}
+.point-time text{
+  font-size:28rpx;
+  color: #9C9C9E;
+  margin-left: 12rpx;
+}
+.point-card{
+  width:686rpx;
+  /* height:320rpx; */
+  background:rgba(255,255,255,1);
+  box-shadow:0rpx 4rpx 16rpx 0rpx rgba(0,0,0,0.09);
+  border-radius:8rpx;
+  margin: 0 auto;
+}
+.point-item{
+  height: 158rpx;
+  overflow: hidden;
+  position: relative;
+}
+.point-item image{
+  position: absolute;
+  top: 64rpx;
+  right: 40rpx;
+  width: 28rpx;
+  height: 28rpx;
+}
+.point-name{
+  font-size:28rpx;
+  color:rgba(51,51,51,1);
+  margin-left: 30rpx;
+  margin-top: 40rpx;
+  font-weight: bold;
+}
+.point-num{
+  color: #9C9C9E;
+  font-size:28rpx;
+  margin-top: 24rpx;
+  margin-left: 78rpx;
+}
+.point-num text{
+  color: #FF7944;
+}
+.point-line{
+  width:616rpx;
+  height:2rpx;
+  background:rgba(249,249,249,1);
+  margin-left: 70rpx;
+}
+.charpter-name{
+  font-size:32rpx;
+  margin: 30rpx;
+  font-weight: bold;
+}
+.van-tabs__line{
+  background-color: #FF7944!important;
+}

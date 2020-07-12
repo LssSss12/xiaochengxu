@@ -1,0 +1,108 @@
+/* pages/user/user.wxss */
+page{
+  background: #F7F7F7;
+}
+.user{
+  padding-bottom: 50rpx;
+}
+.user-top{
+  width:750rpx;
+  height:282rpx;
+  background:#F97930;
+  overflow: hidden;
+  border-radius: 0 0 80rpx 80rpx;
+}
+.user-info{
+  display: flex;
+  align-items: center;
+  height: 124rpx;
+  margin: 33rpx;
+  color: #fff;
+}
+.avatar{
+  width: 124rpx;
+  height: 124rpx;
+  border-radius: 62rpx;
+  overflow: hidden;
+  margin-right: 22rpx;
+}
+.nickname{
+  margin-bottom: 12rpx;
+  font-weight: bold;
+  font-size: 36rpx;
+}
+.username image{
+  width: 40rpx;
+  height: 40rpx;
+}
+.username text{
+  font-size: 28rpx;
+  margin-left: 10rpx;
+}
+.card1{
+  width:690rpx;
+  height:132rpx;
+  background:rgba(255,255,255,1);
+  border-radius:8rpx;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #333333;
+  margin: -80rpx auto 0;
+}
+.card1 view{
+  display: flex;
+  align-items: center;
+  line-height: 44rpx;
+  height: 44rpx;
+}
+.card1 image{
+  width: 44rpx;
+  height: 44rpx;
+  margin-right: 24rpx;
+}
+.card{
+  width:690rpx;
+  background:rgba(255,255,255,1);
+  border-radius:8rpx;
+  margin: 20rpx auto 0;
+}
+.card-item{
+  height: 108rpx;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.card-icon{
+  width: 36rpx;
+  height: 36rpx;
+  margin-left: 34rpx;
+}
+.card-name{
+  font-size:28rpx;
+  color: #333333;
+  margin-left: 30rpx;
+}
+.card-info{
+  position: absolute;
+  right: 68rpx;
+  top: 42rpx;
+  font-size: 24rpx;
+  line-height: 24rpx;
+  color: #E0E0E0;
+  font-weight: 500;
+}
+.card-arrow{
+  position: absolute;
+  top: 42rpx;
+  right: 24rpx;
+  width: 24rpx;
+  height: 24rpx;
+}
+.card-line{
+  margin-left: 80rpx;
+  width:610rpx;
+  height:2rpx;
+  background:linear-gradient(180deg,rgba(255,255,255,1) 0%,rgba(238,238,238,1) 100%);
+}

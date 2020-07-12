@@ -1,0 +1,53 @@
+<view class="detail">
+  <view class="detail-top">
+    <view class="detail-name">建设工程合同</view>
+    <view class="detail-score">
+      <text>重要性</text>
+      <van-rate
+        readonly
+        value="4"
+        size="20"
+        color="#FFB416"
+        void-icon="star"
+        void-color="#DCDCDC"
+      />
+    </view>
+    <view class="detail-score">
+      <text>难度</text>
+      <van-rate
+        readonly
+        value="4"
+        size="20"
+        color="#FFB416"
+        void-icon="star"
+        void-color="#DCDCDC"
+      />
+    </view>
+    <view class="detail-score">
+      <text>教材位置</text>
+      <view>P12-13</view>
+    </view>
+  </view>
+  <view class="detail-title">
+    <view></view>
+    <view>试题检测</view>
+    <view>（5）</view>
+  </view>
+  <view class="detail-test">
+    <view>真题（3）/模拟题（2）</view>
+    <text>去做题</text>
+    <image src="/images/user/11.png"></image>
+  </view>
+  <view class="detail-title">
+    <view></view>
+    <view>近五年考频</view>
+    <view>（共14分）</view>
+  </view>
+  <canvas canvas-id="columnCanvas" class="canvas" bindtouchstart="touchHandler"></canvas>
+  <view class="detail-title">
+    <view></view>
+    <view>错题数量</view>
+    <view>（共8题）</view>
+  </view>
+  <canvas canvas-id="lineCanvas" class="canvas" bindtouchstart="touchHandler"></canvas>
+</view>

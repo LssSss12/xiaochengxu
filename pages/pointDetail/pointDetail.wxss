@@ -1,0 +1,82 @@
+/* pages/pointDetail/pointDetail.wxss */
+.detail-top{
+  width:690rpx;
+  height:336rpx;
+  background:rgba(255,255,255,1);
+  box-shadow:0rpx 4rpx 40rpx 0rpx rgba(0,0,0,0.1);
+  border-radius:8rpx;
+  margin: 40rpx auto;
+  overflow: hidden;
+}
+.detail-name{
+  height:40rpx;
+  line-height: 40rpx;
+  font-size:32rpx;
+  color: #333;
+  margin: 40rpx 30rpx;
+  font-weight: bold;
+}
+.detail-score{
+  display: flex;
+  align-items: center;
+  height: 30rpx;
+  margin-top: 40rpx;
+}
+.detail-score text{
+  width: 174rpx;
+  margin-left: 40rpx;
+}
+.detail-score view{
+  font-size:28rpx;
+  color: #333;
+}
+.detail-title{
+  display: flex;
+  align-items: center;
+  margin-bottom: 40rpx;
+}
+.detail-title view:nth-child(1){
+  width:6rpx;
+  height:32rpx;
+  background:rgba(255,121,68,1);
+  margin-left: 30rpx;
+  margin-right: 20rpx;
+}
+.detail-title view:nth-child(2){
+  font-size:32rpx;
+  color: #333333;
+}
+.detail-title view:nth-child(3){
+  font-size:28rpx;
+  color: #666666;
+}
+.canvas{
+  width: 100%;
+  height: 400rpx;
+}
+.detail-test{
+  position: relative;
+  margin-bottom: 40rpx;
+}
+.detail-test view{
+  height: 40rpx;
+  line-height: 40rpx;
+  font-size: 28rpx;
+  color: #666;
+  margin-left: 58rpx;
+}
+.detail-test text{
+  position: absolute;
+  top: 10rpx;
+  right: 68rpx;
+  color: #FF7B3D;
+  font-size: 28rpx;
+  line-height: 28rpx;
+}
+.detail-test image{
+  width: 28rpx;
+  height: 28rpx;
+  position: absolute;
+  top: 10rpx;
+  right: 30rpx;
+}
