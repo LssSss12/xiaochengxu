@@ -1,11 +1,11 @@
 <view class="detail">
   <view class="detail-top">
-    <view class="detail-name">建设工程合同</view>
+    <view class="detail-name">{{pointsName}}</view>
     <view class="detail-score">
       <text>重要性</text>
       <van-rate
         readonly
-        value="4"
+        value="{{important}}"
         size="20"
         color="#FFB416"
         void-icon="star"
@@ -16,7 +16,7 @@
       <text>难度</text>
       <van-rate
         readonly
-        value="4"
+        value="{{difficulty}}"
         size="20"
         color="#FFB416"
         void-icon="star"
@@ -25,16 +25,16 @@
     </view>
     <view class="detail-score">
       <text>教材位置</text>
-      <view>P12-13</view>
+      <view>{{pointsPage}}</view>
     </view>
   </view>
   <view class="detail-title">
     <view></view>
     <view>试题检测</view>
-    <view>（5）</view>
+    <view>（{{pastExamPaper+simulateExamPaper}}）</view>
   </view>
   <view class="detail-test">
-    <view>真题（3）/模拟题（2）</view>
+    <view>真题（{{pastExamPaper}}）/模拟题（{{simulateExamPaper}}）</view>
     <text>去做题</text>
     <image src="/images/user/11.png"></image>
   </view>

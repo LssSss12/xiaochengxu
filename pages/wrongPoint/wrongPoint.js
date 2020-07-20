@@ -1,10 +1,12 @@
-// pages/wrongPoint/wrongPoint.js
+let api = require('../../utils/api.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    courses:[],
+    points:[],
     active:0
   },
 
@@ -12,9 +14,27 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+		api.getUserExamCourseInfo().then(res => {
+			this.setData({
+        courses:res.data
+      })
+      if(res.data&&res.data.length>0){
+        this.getPoints(res.data[0].id)
+      }
+		})
   },
-
+  getPoints(id){
+    api.getUserErrorsPoints({examCourseId:id}).then(res => {
+			this.setData({
+        points:res.data
+      })
+		})
+  },
+  tapName: function(e) {
+    var index=e.detail.index;
+    var id=this.data.courses[index].id;
+    this.getPoints(id)
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

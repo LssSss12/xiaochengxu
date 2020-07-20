@@ -1,4 +1,4 @@
-// pages/pointDetail/pointDetail.js
+let api = require('../../utils/api.js')
 var wxCharts = require('../../utils/wxcharts.js');
 var columnChart = null;
 var lineChart=null;
@@ -8,15 +8,80 @@ Page({
    * 页面的初始数据
    */
   data: {
-    value:3
+    titleIds:'',
+    difficulty: 0,
+    important: 4,
+    pastExamPaper: 0,
+    pointsName: "",
+    pointsPage: null,
+    simulateExamPaper: 0
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setColumn();
-    this.setLine();
+    var pointsNo=options.id;
+    var self=this;
+    api.getUserPointsDetails({pointsNo:pointsNo}).then(res => {
+			self.setData({
+        titleIds: res.data.titleIds,
+        difficulty: res.data.difficulty,
+        important: res.data.important,
+        pastExamPaper: res.data.pastExamPaper,
+        pointsName: res.data.pointsName,
+        pointsPage: res.data.pointsPage,
+        simulateExamPaper: res.data.simulateExamPaper,
+      })
+      var columnData={
+        categories: [],
+        series:[{
+            name: '单选题',
+            data: [ ],
+            color:'#FF812F',
+            format: function (val, name) {
+              return val ;
+            }
+        }, {
+            name: '多选题',
+            data: [ ],
+            color:'#FFC12F',
+            format: function (val, name) {
+              return val ;
+            }
+        }, {
+          name: '简答题',
+          data: [ ],
+          color:'#50D485',
+          format: function (val, name) {
+            return val ;
+          }
+        }]
+      }
+      res.data.pointsFrequencyVos.forEach(function(item){
+        columnData.categories.push(item.thisYear)
+        columnData.series[0].data.push(item.singleChoiceScore)
+        columnData.series[1].data.push(item.manyChoiceScore)
+        columnData.series[2].data.push(item.shortAnswer)
+      })
+      this.setColumn(columnData);
+      var lineData={
+        categories: [],
+        series: [{  
+            name: '错题数',  
+            data: [],  
+            color:'#FF7944',
+            format: function (val) { 
+                return val+'题'; 
+            } 
+        }]
+      }
+      res.data.pointsErrorVos.forEach(function(item){
+        lineData.categories.push(item.date)
+        lineData.series[0].data.push(item.errorNum)
+      })
+      this.setLine(lineData);
+		})
   },
   touchHandler: function (e) {
     
@@ -27,7 +92,7 @@ Page({
   onReady: function () {
 
   },
-  setLine(){
+  setLine(lineData){
     var windowWidth = 320;
     try {
       var res = wx.getSystemInfoSync();
@@ -39,15 +104,8 @@ Page({
       canvasId: 'lineCanvas',
       type: 'line',
       legend:false,
-      categories: ['2012', '2013', '2014', '2015', '2016', '2017'],
-      series: [{  
-          name: '错题数',  
-          data: [2,3,4,5,4,3,5],  
-          color:'#FF7944',
-          format: function (val) { 
-              return val+'题'; 
-          } 
-      }],
+      categories: lineData.categories,
+      series:lineData.series,
       yAxis: {
           title: '', 
           format: function (val) {
@@ -59,7 +117,7 @@ Page({
       height: 200,
     });
   },
-  setColumn(){
+  setColumn(columnData){
     var windowWidth = 320;
     try {
       var res = wx.getSystemInfoSync();
@@ -72,29 +130,8 @@ Page({
         canvasId: 'columnCanvas',
         type: 'column',
         animation: true,
-        categories: [ '2013', '2014', '2015', '2016', '2017'],
-        series: [{
-            name: '单选题',
-            data: [ 20, 45, 37, 4, 80],
-            color:'#FF812F',
-            format: function (val, name) {
-              return val ;
-            }
-        }, {
-            name: '多选题',
-            data: [ 40, 65, 100, 34, 18],
-            color:'#FFC12F',
-            format: function (val, name) {
-              return val ;
-            }
-        }, {
-          name: '简答题',
-          data: [ 40, 65, 100, 34, 18],
-          color:'#50D485',
-          format: function (val, name) {
-            return val ;
-          }
-        }],
+        categories:  columnData.categories,
+        series: columnData.series,
         yAxis: {
             format: function (val) {
                 return val + '分';
