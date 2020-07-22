@@ -13,6 +13,7 @@
         </navigator>
       </view>
     </view>
+    <image class="empty" src="/images/user/empty.png" wx:if="{{points.length==0}}"></image>
   </van-tab>
   <!-- <van-tab title="经济">
     <view class="point-box">

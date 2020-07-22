@@ -13,6 +13,7 @@ Page({
     important: 4,
     pastExamPaper: 0,
     pointsName: "",
+    totalScore:'',
     pointsPage: null,
     simulateExamPaper: 0
   },
@@ -32,6 +33,8 @@ Page({
         pointsName: res.data.pointsName,
         pointsPage: res.data.pointsPage,
         simulateExamPaper: res.data.simulateExamPaper,
+        totalScore: res.data.totalScore,
+        totalErrors: res.data.totalErrors
       })
       var columnData={
         categories: [],
@@ -111,6 +114,7 @@ Page({
           format: function (val) {
               return val;
           },
+          max:10,
           min: 0
       },
       width: windowWidth,
@@ -138,7 +142,8 @@ Page({
             },
             gridColor: '#F7F8F9',
             title: '',
-            min: 0
+            min: 0,  //最小值
+            max:100,  //最大值
         },
         xAxis: {
             disableGrid: false,
