@@ -143,7 +143,7 @@ Page({
             gridColor: '#F7F8F9',
             title: '',
             min: 0,  //最小值
-            max:100,  //最大值
+            max:10,  //最大值
         },
         xAxis: {
             disableGrid: false,
