@@ -17,6 +17,10 @@
 		"pages/topicCard/card",
 		"pages/my/my",
 		"pages/sectionTopic/topic",
+        "pages/user/user",
+        "pages/subject/subject",
+        "pages/wrongPoint/wrongPoint",
+        "pages/pointDetail/pointDetail",
 		"pages/errorTopic/topic"
 	],
 	"window": {
@@ -32,6 +36,7 @@
 		"van-nav-bar": "vant/nav-bar/index",
 		"van-button": "vant/button/index",
 		"van-tab": "vant/tab/index",
+        "van-rate": "vant/rate/index",
 		"van-tabs": "vant/tabs/index",
 		"van-row": "vant/row/index",
 		"van-col": "vant/col/index",
@@ -56,7 +61,7 @@
 			},
 			{
 				"text": "我的",
-				"pagePath": "pages/my/my",
+				"pagePath": "pages/user/user",
 				"iconPath": "images/my.png",
 				"selectedIconPath": "images/select_my.png"
 			}

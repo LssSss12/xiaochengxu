@@ -49,6 +49,12 @@ param);
 //获取错题集列表
 let userErrorTitleList = (param) => wxRequest.post('/user-service/user/userErrorTitleList',
 param);
+//获取错题考点
+let getUserErrorsPoints = (param) => wxRequest.post('/user-service/user/getUserErrorsPoints',
+param);
+//获取考点详情
+let getUserPointsDetails = (param) => wxRequest.post('/user-service/user/getUserPointsDetails',
+param);
 module.exports = {
 	getWeixinOpenId,
 	getWeixinUnionId,
@@ -72,5 +78,7 @@ module.exports = {
 	deleteUserCollectTitle,
 	userSubmitAnswerSheet,
 	getUserChapterExamList,
-	userErrorTitleList
+	userErrorTitleList,
+	getUserErrorsPoints,
+	getUserPointsDetails
 }

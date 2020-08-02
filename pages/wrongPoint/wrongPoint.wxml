@@ -1,0 +1,77 @@
+<van-tabs active="{{ active }}" sticky bind:change="tapName">
+  <van-tab wx:for="{{courses}}" title="{{item.courseShortName}}" wx:key="id" data-id="{{item.id}}">
+    <view class="point-box" wx:for="{{points}}" wx:for-item="chapter">
+      <view class="charpter-name">{{chapter.chapterName}}</view>
+      <view class="point-card">
+        <navigator url="{{'/pages/pointDetail/pointDetail?id='+point.pointsNo}}" hover-class="navigator-hover" wx:for="{{chapter.respondErrorsPointsInfoVos}}" wx:for-index="pointIndex" wx:for-item="point">
+          <view class="point-item">
+            <view class="point-name">{{pointIndex+1+'、'+point.pointsName}}</view>
+            <view class="point-num">错<text>{{point.errorTotal}}</text>题/次，共做 {{point.doneTotal}} 题/次，错题率<text>{{point.errorRate}}%</text> </view>
+            <image src="/images/user/11.png"></image>
+          </view>
+          <view class="point-line"></view>
+        </navigator>
+      </view>
+    </view>
+    <image class="empty" src="/images/user/empty.png" wx:if="{{points.length==0}}"></image>
+  </van-tab>
+  <!-- <van-tab title="经济">
+    <view class="point-box">
+      <view class="point-time">
+        <image src="/images/user/clock.png"></image>
+        <text>今天</text>
+      </view>
+      <view class="point-card">
+        <view class="point-item">
+          <view class="point-name">1、利润的计算</view>
+          <view class="point-num">错<text>2</text>题</view>
+          <image src="/images/user/11.png"></image>
+        </view>
+        <view class="point-line"></view>
+        <view class="point-item">
+          <view class="point-name">1、利润的计算</view>
+          <view class="point-num">错<text>2</text>题</view>
+          <image src="/images/user/11.png"></image>
+        </view>
+      </view>
+      <view class="point-time">
+        <image src="/images/user/clock.png"></image>
+        <text>前天</text>
+      </view>
+      <view class="point-card">
+        <view class="point-item">
+          <view class="point-name">1、利润的计算</view>
+          <view class="point-num">错<text>2</text>题</view>
+          <image src="/images/user/11.png"></image>
+        </view>
+        <view class="point-line"></view>
+        <view class="point-item">
+          <view class="point-name">1、利润的计算</view>
+          <view class="point-num">错<text>2</text>题</view>
+          <image src="/images/user/11.png"></image>
+        </view>
+      </view>
+      <view class="point-time">
+        <image src="/images/user/clock.png"></image>
+        <text> 11月8日之前</text>
+      </view>
+      <view class="charpter-name">一、工程经济</view>
+      <view class="point-card">
+        <view class="point-item">
+          <view class="point-name">1、利润的计算</view>
+          <view class="point-num">错<text>2</text>题/次，共做 10 题/次，错题率<text>50%</text> </view>
+          <image src="/images/user/11.png"></image>
+        </view>
+        <view class="point-line"></view>
+        <view class="point-item">
+          <view class="point-name">1、利润的计算</view>
+          <view class="point-num">错<text>2</text>题/次，共做 10 题/次，错题率<text>50%</text> </view>
+          <image src="/images/user/11.png"></image>
+        </view>
+      </view>
+    </view>
+  </van-tab>
+  <van-tab title="法规">内容 2</van-tab>
+  <van-tab title="管理">内容 3</van-tab>
+  <van-tab title="建筑实务">内容 4</van-tab> -->
+</van-tabs>

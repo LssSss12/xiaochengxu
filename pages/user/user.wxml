@@ -1,0 +1,90 @@
+<view class="user">
+  <view class="user-top">
+    <view class="user-info">
+      <view  class="avatar">
+        <open-data type="userAvatarUrl"></open-data>
+      </view>
+      <view class="username">
+        <open-data type="userNickName" class="nickname"></open-data>
+        <view>
+          <image src="/images/user/1.png"></image>
+          <text>一级建造师</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="card1">
+    <view>
+      <image src="/images/user/2.png"></image>
+      <text>做题记录</text>
+    </view>
+    <view>|</view>
+    <view>
+      <image src="/images/user/3.png"></image>
+      <text>收藏夹</text>
+    </view>
+  </view>
+  <view class="card">
+    <navigator url="/pages/wrongPoint/wrongPoint" hover-class="navigator-hover">
+      <view class="card-item">
+        <image class="card-icon" src="/images/user/4.png"></image>
+        <text  class="card-name">错题考点</text>
+        <text  class="card-info">VIP</text>
+        <image class="card-arrow" src="/images/user/11.png"></image>
+      </view>
+    </navigator>
+    <view class="card-line"></view>
+    <view class="card-item">
+      <image class="card-icon" src="/images/user/5.png"></image>
+      <text  class="card-name">分值分布</text>
+      <text  class="card-info">VIP</text>
+      <image class="card-arrow" src="/images/user/11.png"></image>
+    </view>
+    <view class="card-line"></view>
+    <view class="card-item">
+      <image class="card-icon" src="/images/user/6.png"></image>
+      <text  class="card-name">会员周报</text>
+      <text  class="card-info">VIP</text>
+      <image class="card-arrow" src="/images/user/11.png"></image>
+    </view>
+    <view class="card-line"></view>
+    <view class="card-item">
+      <image class="card-icon" src="/images/user/12.png"></image>
+      <text  class="card-name">AI测评（公共课）</text>
+      <text  class="card-info">VIP</text>
+      <image class="card-arrow" src="/images/user/11.png"></image>
+    </view>
+  </view>
+  <view class="card">
+    <view class="card-item">
+      <image class="card-icon" src="/images/user/7.png"></image>
+      <text  class="card-name">成绩查询</text>
+      <!-- <text  class="card-info">VIP</text> -->
+      <image class="card-arrow" src="/images/user/11.png"></image>
+    </view>
+  </view>
+  <view class="card">
+    <view class="card-item">
+      <image class="card-icon" src="/images/user/8.png"></image>
+      <text  class="card-name">题库会员</text>
+      <text  class="card-info">带开启</text>
+      <image class="card-arrow" src="/images/user/11.png"></image>
+    </view>
+    <view class="card-line"></view>
+    <view class="card-item">
+      <image class="card-icon" src="/images/user/9.png"></image>
+      <text  class="card-name">卡卷</text>
+      <text  class="card-info">3张</text>
+      <image class="card-arrow" src="/images/user/11.png"></image>
+    </view>
+    <view class="card-line"></view>
+    <navigator url="/pages/subject/subject" hover-class="navigator-hover">
+      <view class="card-item">
+        <image class="card-icon" src="/images/user/10.png"></image>
+        <text  class="card-name">考试科目</text>
+        <!-- <text  class="card-info">VIP</text> -->
+        <image class="card-arrow" src="/images/user/11.png"></image>
+      </view>
+    </navigator>
+  </view>
+</view>

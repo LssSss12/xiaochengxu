@@ -1,0 +1,62 @@
+/* pages/subject/subject.wxss */
+page{
+  height: 100%;
+}
+.subject-box{
+  height: 100%;
+  width: 750rpx;
+  position: relative;
+}
+.exam{
+  width: 232rpx;
+  background:rgba(247,247,247,1);
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+}
+.exam view{
+  width:232rpx;
+  padding: 36rpx 0;
+}
+.exam view.active{
+  background:rgba(255,255,255,1);
+}
+.exam view text{
+  display: block;
+  height: 36rpx;
+  line-height: 36rpx;
+  text-align: center;
+}
+.exam view.active text{
+  border-left: 6rpx solid #F36413;
+}
+.subject view{
+  height:108rpx;
+  line-height: 108rpx;
+  text-align: center;
+  border-bottom: 2rpx solid #F7F7F7;
+  font-size:32rpx;
+  color: #333;
+  position: relative;
+}
+.subject view image{
+  width: 32rpx;
+  height: 32rpx;
+  position: absolute;
+  right: 40rpx;
+  top: 40rpx;
+}
+.submit{
+  position: absolute;
+  bottom: 100rpx;
+  right: 40rpx;
+  width:438rpx;
+  height:80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 32rpx;
+  background:rgba(243,100,19,1);
+  border-radius:4rpx;
+  color: #fff;
+}

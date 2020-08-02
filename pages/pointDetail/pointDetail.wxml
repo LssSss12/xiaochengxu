@@ -1,0 +1,53 @@
+<view class="detail">
+  <view class="detail-top">
+    <view class="detail-name">{{pointsName}}</view>
+    <view class="detail-score">
+      <text>重要性</text>
+      <van-rate
+        readonly
+        value="{{important}}"
+        size="20"
+        color="#FFB416"
+        void-icon="star"
+        void-color="#DCDCDC"
+      />
+    </view>
+    <view class="detail-score">
+      <text>难度</text>
+      <van-rate
+        readonly
+        value="{{difficulty}}"
+        size="20"
+        color="#FFB416"
+        void-icon="star"
+        void-color="#DCDCDC"
+      />
+    </view>
+    <view class="detail-score">
+      <text>教材位置</text>
+      <view>{{pointsPage}}</view>
+    </view>
+  </view>
+  <view class="detail-title">
+    <view></view>
+    <view>试题检测</view>
+    <view>（{{pastExamPaper+simulateExamPaper}}）</view>
+  </view>
+  <view class="detail-test">
+    <view>真题（{{pastExamPaper}}）/模拟题（{{simulateExamPaper}}）</view>
+    <text>去做题</text>
+    <image src="/images/user/11.png"></image>
+  </view>
+  <view class="detail-title">
+    <view></view>
+    <view>近五年考频</view>
+    <view>（共{{totalScore}}分）</view>
+  </view>
+  <canvas canvas-id="columnCanvas" class="canvas" bindtouchstart="touchHandler"></canvas>
+  <view class="detail-title">
+    <view></view>
+    <view>错题数量</view>
+    <view>（共{{totalErrors}}题）</view>
+  </view>
+  <canvas canvas-id="lineCanvas" class="canvas" bindtouchstart="touchHandler"></canvas>
+</view>
