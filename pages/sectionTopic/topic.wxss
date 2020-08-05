@@ -43,8 +43,38 @@
 	height: 6rpx;
 }
 .day{
-	padding:28rpx 30rpx;
 	box-sizing: border-box;
+	padding-bottom: 140rpx;
+}
+.fenxi-t,.fenxi-b{
+	padding: 20rpx 30rpx;
+}
+.fenxi-b-qus{
+	font-size: 32rpx;
+	color: #333;
+}
+.fenxi-b-text{
+	font-size: 28rpx;
+	color: #9c9c9e;
+	border-top: 2rpx solid #ddd;
+padding-top: 20rpx;
+margin-top: 10px;
+}
+.fenxi-t{
+	overflow-y: scroll;
+	height:600rpx;
+}
+.fenxi-b{
+	border-top: 20rpx solid #ddd;
+	position: relative;
+}
+.fenxi-b-icon{
+	position: absolute;
+	top: -32rpx;
+	left: 50%;
+	background: #fff;
+	padding: 2rpx 8rpx;
+	margin-left: -14rpx;
 }
 .day-type{
 	width:160rpx;
@@ -56,7 +86,6 @@
 	color: #9c9c9e;
 }
 .day-title{
-	margin-top: 40rpx;
 	font-size: 32rpx;
 	color: #333;
 }
@@ -105,6 +134,7 @@
 	 height: 100rpx;
 	 border-top: 2rpx solid #ddd;
 	 padding-top: 20rpx;
+	 background-color: #fff;
  }
  .topic-b>view{
 	 float: right;
@@ -135,18 +165,22 @@
 .collect .van-icon {
 	margin-right: 8rpx;
 }
+.share{
+	display: flex;
+}
 .share button{
 	background-color: #fff !important;
 	height: 60rpx;
 	line-height: 60rpx;
+	padding: 0rpx 4rpx;
 }
 .share button:after{
 	border:none;
 }
 .title-label{
 	font-size: 24rpx;
-color: #9c9c9e;
-background: #f7f7f7;
+color: #FF7944;
+background: #FFF6F3;
 padding: 8rpx 20rpx;
 border-radius: 34rpx;
 }

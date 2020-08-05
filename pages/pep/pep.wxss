@@ -19,7 +19,7 @@
 	margin-top: 40rpx;
 }
 .pep-b-list{
-	border-top: 2rpx solid #f08549;
+	border-top: 4rpx solid #f08549;
 	box-sizing: border-box;
 	padding: 0rpx 60rpx;
 	width: 100%;
@@ -29,7 +29,7 @@
 }
 .pep-b-list-t{
 	text-align: center;
-	border-bottom: 2rpx solid #ddd;
+	border-bottom: 2rpx solid #e5e5e5;
 	height: 120rpx;
 	line-height: 120rpx;
 	font-size: 36rpx;
@@ -43,4 +43,5 @@
 .pep-b-list-b>view{
 	line-height:118rpx;
 	font-size: 28rpx;
+	color: #999;
 }

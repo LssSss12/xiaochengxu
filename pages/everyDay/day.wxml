@@ -36,7 +36,7 @@
 				<view class="day-choose-list-text">{{item.optionContent}}</view>
 			</view>
 		</view>
-		<van-button class="{{curAnwser.length === 0?'grey':''}}" wx:if="{{isOne === 1}}" type="primary" block bindtap="getDayanalysis">查看解析</van-button>
+		<van-button class="{{curAnwser.length === 0?'grey':''}}" wx:if="{{isOne === 1&&analysisBtn}}" type="primary" block bindtap="getDayanalysis">查看解析</van-button>
 
 		<view wx:if="{{analysis}}" class="day-analysis">
 			<view class="day-analysis-part1 clear">
@@ -46,7 +46,7 @@
 				</view>
 					<view class="day-analysis-part1-part">
 					<text class="day-analysis-part1-text">我的答案 </text>
-					<text class="day-analysis-part1-ABCD ABCD-err"> {{curAnwserStr}}</text>
+					<text class="{{answerObj.answerResult===0?'moreRedText':''}} {{answerObj.answerResult===1?'moreGreenText':''}} {{answerObj.answerResult===2?'moreYellowText':''}}"> {{curAnwserStr}}</text>
 				</view>
 			</view>
 			<view class="day-analysis-part2">本题我做了 {{answerObj.doTotalTimes}} 次，作对了<text style="color:#f08052;"> {{answerObj.doRightTimes}} </text>次</view>
@@ -57,7 +57,7 @@
 				</view>
 				<view class="day-analysis-part3-r">
 					<view class="day-analysis-part3-top">{{answerObj.difficulty}}</view>
-					<view class="day-analysis-part3-bottom">测试题难度</view>
+					<view class="day-analysis-part3-bottom">题目难度</view>
 				</view>
 			</view>
 
@@ -65,7 +65,7 @@
 				<view class="day-analysis-part4-title">参考解析</view>
 				<view class="day-analysis-part4-analysis">{{answerObj.examQuestionsAnalysisEntity.analysisContent}}</view>
 				<view class="day-analysis-part4-title">相关考点</view>
-				<view class="day-analysis-part4-testing">2011202项目风险管理的工作流程></view>
+				<view class="day-analysis-part4-testing">{{examPoints[0].optionNo}}{{examPoints[0].pointsName}}></view>
 			</view>
 		</view>
 	</view>

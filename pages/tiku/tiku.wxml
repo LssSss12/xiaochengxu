@@ -1,5 +1,9 @@
 <van-nav-bar
-  title="开学题库({{title}})"
+  title="快学题库 {{title}}"
+  z-index="999"
+	fixed
+  placeholder="true"
+	safe-area-inset-top
 />
 
 <van-tabs class="tiku-tab" active="{{ active }}" line-width="14" sticky swipeable="true" bind:change="onChange">
@@ -8,11 +12,9 @@
   <view class="tiku-head">
       <van-search class="tiku-head-l" value="{{ search }}" bindtap="goSearch" placeholder="请输入搜索关键词" />
       <view class="tiku-head-r">
-        <view class="tiku-head-r-text">距离一建考试还有</view>
+        <view class="tiku-head-r-text">距离{{type}}考试还有</view>
         <view class="tiku-head-r-date">
-          <text class="tiku-head-r-date-text">0</text>
-          <text class="tiku-head-r-date-text">9</text>
-          <text class="tiku-head-r-date-text">9</text>
+          <text class="tiku-head-r-date-text" wx:for="{{examDayNum}}" wx:key="index">{{item}}</text>
           天
         </view>
       </view>
@@ -30,7 +32,8 @@
             stroke-width="10"
           >
           <Slots>
-            <view style="font-size:40rpx;color:#f08052">{{obj.userPastChapter.accuracy}}%</view>
+            <view wx:if="{{obj.userPastChapter}}" style="font-size:40rpx;color:#f08052">{{obj.userPastChapter.accuracy}}%</view>
+             <view wx:if="{{!obj.userPastChapter}}" style="font-size:40rpx;color:#f08052">0%</view>
             <view><text class="report-top-circle-text2">正确率</text></view>
           </Slots>	
         </van-circle>
@@ -56,14 +59,14 @@
         </view>
         <image src="../../images/tiku-back1.png"></image>
       </view>
-      <view class="tiku-part2-list" style="border-left:4rpx solid #3d8ec7;">
+      <view class="tiku-part2-list" style="border-left:4rpx solid #3d8ec7;" bindtap="goSpeed">
         <view class="tiku-part2-list-l">智能速练</view>
         <view class="tiku-part2-list-r">
           <view class="tiku-part2-list-r-t">
             <text class="tiku-part2-list-r-t-text">正确率 </text>
             <text  class="tiku-part2-list-r-t-num" style="color:#3d8ec7;"> {{obj.intelligentExercise.accuracy}}%</text>
           </view>
-          <view class="tiku-part2-list-r-b">已做{{obj.intelligentExercise.haveNum}}套/共{{obj.intelligentExercise.totalNum}}套</view>
+          <view class="tiku-part2-list-r-b" style="text-align:right;">已做{{obj.intelligentExercise.haveNum}}组</view>
         </view>
           <image src="../../images/tiku-back2.png"></image>
       </view>
@@ -71,8 +74,8 @@
         <view class="tiku-part2-list-l">错题集</view>
         <view class="tiku-part2-list-r" style="margin:0rpx;">
           <view class="tiku-part2-list-r-t" style="line-height:168rpx;">
-            <text class="tiku-part2-list-r-t-text">错误修正 </text>
-            <text  class="tiku-part2-list-r-t-num"> {{obj.userErrorNum}}</text>
+            <text class="tiku-part2-list-r-t-text">错误数量</text>
+            <text  class="tiku-part2-list-r-t-num" style="color:#f08052;"> {{obj.userErrorNum}}</text>
           </view>
         </view>
         <image src="../../images/tiku-back3.png"></image>

@@ -21,7 +21,7 @@
 		<view class="pep-b-list" wx:for="{{years}}" wx:key="index" data-index="{{index}}" data-id="{{item.examPaperMasterEntity.id}}" bindtap="startTopic">
 			<view class="pep-b-list-t">{{item.examPaperMasterEntity.examinationName}}</view>
 			<view class="pep-b-list-b">
-				<view>共 {{item.totalTitles}} 题</view>
+				<view>共 <text style="color:#333;">{{item.totalTitles}}</text> 题</view>
 				<view>做过<text class="colorO"> {{item.totalToDo}} </text>次</view>
 				<view>上次得分<text class="colorG" style="font-size:34rpx"> {{item.lastTimeScore}} </text>分</view>
 			</view>

@@ -12,7 +12,7 @@
 	<view class="report-head">评分和错题考点仅针对客观题</view>
 	<view class="report-top">
 		<view class="report-top-circle">
-			<van-circle value="{{ 30 }}" size="120" layer-color="#f7f7f7" stroke-width="10" color="#38EA80">
+			<van-circle value="{{ circle }}" size="120" layer-color="#f7f7f7" stroke-width="10" color="#38EA80">
 				<Slots>
 					<view><text class="report-top-circle-text1">{{report.totalScore}}</text><text class="report-top-circle-text2">分</text></view>
 					<view><text class="report-top-circle-text2">得分</text></view>
@@ -21,16 +21,26 @@
 		</view>
 		<view class="report-top-card">
 			<view class="report-top-card-list">
-				<view class="report-top-card-list-text1">{{report.beatRate}}%</view>
-				<view class="report-top-card-list-text">击败率</view>
+				
+				<view class="report-top-card-list-part">
+					<view class="report-top-card-list-text1">{{report.beatRate}}%</view>
+					<view class="report-top-card-list-text">击败率</view>
+				</view>
+				<image src="../../images/report-bg1.png"></image>
 			</view>
 			<view class="report-top-card-list">
-				<view class="report-top-card-list-text2">{{report.averageScore}}分</view>
-				<view class="report-top-card-list-text">人均得分</view>
+				<view class="report-top-card-list-part">
+					<view class="report-top-card-list-text2">{{report.averageScore}}分</view>
+					<view class="report-top-card-list-text">人均得分</view>
+				</view>
+				<image src="../../images/report-bg2.png"></image>
 			</view>
 			<view class="report-top-card-list">
-				<view class="report-top-card-list-text3">{{report.durationTime}}</view>
-				<view class="report-top-card-list-text">用时</view>
+				<view class="report-top-card-list-part">
+					<view class="report-top-card-list-text3">{{time}}</view>
+					<view class="report-top-card-list-text">用时</view>
+				</view>
+				<image src="../../images/report-bg3.png"></image>
 			</view>
 		</view>
 	</view>
@@ -39,7 +49,7 @@
 			<view class="clear">
 				<view class="report-msg-btn">
 				去除已删除考点的题目
-				<van-switch checked="{{ checked }}" size="40" bind:change="onChange" />
+				<!-- <van-switch checked="{{ checked }}" size="40" bind:change="onChange" /> -->
 			</view>
 			</view>
 			<view class="report-middle-box clear">
@@ -58,7 +68,7 @@
 			</view>
 		</view>
 
-	<view class="report-middle">
+	<view class="report-middle" wx:if="{{from === 'real'}}">
 		<view class="report-middle-title">得分记录</view>
 		   <canvas canvas-id="columnCanvas" class="canvas"></canvas>
 	</view>
@@ -66,23 +76,22 @@
 	<view class="report-bottom">
 		<view class="report-bottom-title">单项选择题</view>
 		<view class="r-b-part">
-			<view class="r-b-part-list {{item.answerResult===0?'error':''}} {{item.answerResult===1?'right':''}} {{item.answerResult===2?'notAll':''}}" wx:for="{{report.userExamTitleRecordEntityList}}" wx:if="{{item.isMultipleChoice === 0}}" wx:key="index">{{item.serialNumber}}</view>
+			<view class="r-b-part-list {{item.answerResult===0?'error':''}} {{item.answerResult===1?'right':''}}" wx:for="{{report.userExamTitleRecordEntityList}}" wx:if="{{item.isMultipleChoice === 0&&item.titleType===0}}" wx:key="index" data-number="{{item.serialNumber}}" bindtap="analysis">{{item.serialNumber}}</view>
 		
 		
 		</view>
 		<view class="report-bottom-title">多项选择题</view>
 		<view class="r-b-part">
-			<view wx:for="{{report.userExamTitleRecordEntityList}}" class="r-b-part-list {{item.answerResult===0?'error':''}} {{item.answerResult===1?'right':''}} {{item.answerResult===2?'notAll':''}}" wx:if="{{item.isMultipleChoice === 1}}" wx:key="index">{{item.serialNumber}}</view>
+			<view wx:for="{{report.userExamTitleRecordEntityList}}" class="r-b-part-list {{item.answerResult===0?'error':''}} {{item.answerResult===1?'right':''}} {{item.answerResult===2?'notAll':''}}" wx:if="{{item.isMultipleChoice === 1&&item.titleType===0}}" wx:key="index" data-number="{{item.serialNumber}}" bindtap="analysis">{{item.serialNumber}}</view>
 		
 		</view>
 		<view class="report-bottom-title">案例分析题</view>
 		<view class="r-b-part">
-			<view class="r-b-part-list2">11-1</view>
+			<view class="r-b-part-list2 {{item.serialNumber.length >= 3?'card-list-more':''}}" wx:for="{{report.userExamTitleRecordEntityList}}" wx:if="{{item.titleType===2}}" data-number="{{item.serialNumber}}" data-index="{{index}}"  wx:key="index" bindtap="analysis">{{item.serialNumber}}</view>
 		</view>
 	</view>
-
-	<view class="report-btn">
-		<view class="report-btn-list">再做一遍</view>
-		<view class="report-btn-list bottonBtnColor">错题解析</view>
-	</view>
 </view>
+	<view class="report-btn">
+		<view class="report-btn-list" bindtap="allAnalysis">全部解析</view>
+		<view class="report-btn-list bottonBtnColor" bindtap="errAnalysis">错题解析</view>
+	</view>

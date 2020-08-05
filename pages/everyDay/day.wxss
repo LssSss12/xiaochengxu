@@ -7,9 +7,9 @@
 	height:40rpx;
 	line-height: 40rpx;
 	text-align: center;
-	background-color: #f7f7f7;
+	background-color: #FFF6F3;
 	font-size: 24rpx;
-	color: #9c9c9e;
+	color: #FF7944;
 }
 .day-title{
 	margin-top: 40rpx;
@@ -112,14 +112,14 @@
 	margin:40rpx 0rpx 30rpx 0rpx;
 }
 .day-analysis-part4-analysis{
-	font-size: 24rpx;
+	font-size: 30rpx;
 	color: #666;
 }
 .day-analysis-part4-testing{
 	float: left;
-	background-color: #f7f7f7;
+	background-color: #FFF6F3;
 	font-size: 24rpx;
-	color: #9c9c9e;
+	color: #F36210;
 	text-align: center;
 	margin: 0rpx auto;
 	padding: 8rpx 20rpx;
@@ -160,4 +160,13 @@
 .grey .van-button{
 	background-color: #E2E2E2!important;
 	border-color:  #E2E2E2!important;
+}
+.moreRedText{
+	color: #DC3A3A;
+}
+.moreGreenText{
+	color: #50D485;
+}
+.moreYellowText{
+	color: #FFAA08;
 }

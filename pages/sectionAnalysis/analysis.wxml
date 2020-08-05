@@ -1,0 +1,104 @@
+<van-nav-bar
+  title="{{courseName}}"
+  left-arrow
+	z-index="999"
+	fixed
+	safe-area-inset-top
+	placeholder="true"
+  bind:click-left="onClickLeft"
+/>
+<view class="analysis-title {{answerResult === 0?'err':''}} {{answerResult === 2?'notAll':''}} {{answerResult === 1?'right':''}}">
+	<view wx:if="{{from !== 'real'}}" class="analysis-title-l">{{paperName}}</view>
+	<view wx:if="{{from === 'real'}}">{{paperName}}</view>
+	<view class="analysis-title-r">
+		<text class="analysis-title-r-num">{{serialNumber}}</text>
+		<text>/{{length}}</text>
+	</view>
+</view>	
+
+<view class="day" bindtouchstart="touchStart" bindtouchend="touchEnd">
+	<view style="padding: 10px 15px;">
+		<text class="title-label" wx:if="{{topicObj.userExamTitleRecordEntity.isMultipleChoice===0&&topicObj.userExamTitleRecordEntity.titleType===0}}">单项选择题</text>
+		<text class="title-label" wx:if="{{topicObj.userExamTitleRecordEntity.isMultipleChoice===1&&topicObj.userExamTitleRecordEntity.titleType===0}}">多项选择题</text>
+		<text class="title-label" wx:if="{{topicObj.userExamTitleRecordEntity.titleType===2}}">案例分析题</text>
+		<text class="title-label" wx:if="{{topicObj.userExamTitleRecordEntity.titleType===1}}">案例选择题</text>
+	</view>
+
+
+	<view style="padding:20rpx 30rpx;"  wx:if="{{topicObj.userExamTitleRecordEntity.titleType===0}}">
+		<view class="day-title">【{{topicObj.respondAppExamQuestionVo.questionsNo}}】{{topicObj.respondAppExamQuestionVo.questionsTitle}}</view>
+		<view class="day-choose">
+			<view class="day-choose-list" wx:for="{{topicObj.respondAppExamQuestionVo.examQuestionsOptions}}" wx:key="index">
+				<view class="day-choose-list-label moreGreen" wx:if="{{item.isRight=== 1&&item.isChk}}">
+					<van-icon name="success" style="font-size:44rpx;margin-top:12rpx;"/>
+				</view>
+				<view class="day-choose-list-label moreRed" wx:if="{{item.isRight=== 0&&item.isChk}}">X</view>
+				<view class="day-choose-list-label {{(item.isRight=== 1&&!item.isChk)?'rightNochk':''}}" wx:if="{{!item.isChk}}">{{item.optionNo}}</view>
+				<view class="day-choose-list-text {{item.isRight=== 1&&item.isChk?'moreGreenText':''}} {{item.isRight=== 0&&item.isChk?'moreRedText':''}}">{{item.optionContent}}</view>
+			</view>
+		</view>
+
+			<view class="day-analysis">
+				<view class="day-analysis-part1 clear">
+					<view class="day-analysis-part1-part">
+						<text class="day-analysis-part1-text">正确答案 </text>
+						<text class="day-analysis-part1-ABCD"> {{topicObj.questionsAnalysisInfoVo.examQuestionsAnalysisEntity.rightAnswers}} </text>
+					</view>
+						<view class="day-analysis-part1-part">
+						<text class="day-analysis-part1-text">我的答案 </text>
+						<text class="{{answerResult===0?'moreRedText':''}} {{answerResult===1?'moreGreenText':''}} {{answerResult===2?'moreYellowText':''}}" wx:if="{{topicObj.userExamTitleRecordEntity.userAnswer&&topicObj.userExamTitleRecordEntity.userAnswer!==''}}">{{topicObj.userExamTitleRecordEntity.userAnswer}}</text>
+							<text class="day-analysis-part1-no" wx:if="{{!topicObj.userExamTitleRecordEntity.userAnswer||topicObj.userExamTitleRecordEntity.userAnswer===''}}">该题目未作答</text>
+					</view>
+				</view>
+				<view class="day-analysis-part2">
+					本题我做了 {{topicObj.questionsAnalysisInfoVo.doTotalTimes}} 次，作对了<text style="color:#f08052;"> {{topicObj.questionsAnalysisInfoVo.doRightTimes}} </text>次
+				</view>
+				<view class="day-analysis-part3 clear">
+					<view class="day-analysis-part3-l">
+						<view class="day-analysis-part3-top">{{topicObj.questionsAnalysisInfoVo.doRightAccuracy}}%</view>
+						<view class="day-analysis-part3-bottom">全站正确率</view>
+					</view>
+					<view class="day-analysis-part3-r">
+						<view class="day-analysis-part3-top">{{topicObj.questionsAnalysisInfoVo.difficulty}}</view>
+						<view class="day-analysis-part3-bottom">题目难度</view>
+					</view>
+				</view>
+
+				<view class="day-analysis-part4 clear">
+					<view class="clear day-analysis-part4-t">
+						<view class="day-analysis-part4-title">参考解析</view>
+						<view class="day-analysis-part4-err">我来纠错</view>
+					</view>
+					<view class="day-analysis-part4-analysis">{{topicObj.questionsAnalysisInfoVo.examQuestionsAnalysisEntity.analysisContent}}</view>
+				</view>
+
+			</view>
+	</view>
+
+	<view wx:if="{{topicObj.userExamTitleRecordEntity.titleType===2}}">
+		<view class="fenxi-t">【{{topicObj.respondAppExamQuestionVo.respondExamStemVo.questionsNo}}】
+			<rich-text name="questionsStem" class='richcontent' nodes="{{questionsStem}}"></rich-text>
+		</view>
+		<view class="fenxi-b">
+			<van-icon class="fenxi-b-icon" name="wap-nav"></van-icon>
+			<view class="fenxi-b-qus">【{{topicObj.respondAppExamQuestionVo.questionsNo}}】 {{topicObj.respondAppExamQuestionVo.questionsTitle}}</view>
+		</view>
+		<view class="padding30 clear">
+			<view class="clear day-analysis-part4-t">
+				<view class="day-analysis-part4-title">参考答案</view>
+				<view class="day-analysis-part4-err">我来纠错</view>
+			</view>
+			<view class="day-analysis-part4-analysis">{{topicObj.questionsAnalysisInfoVo.examQuestionsAnalysisEntity.rightAnswers}}</view>
+		</view>
+	</view>	
+			</view>
+
+		<view class="padding30">
+			<view class="clear day-analysis-part4-t">
+				<view class="day-analysis-part4-title">相关考点</view>
+				<view class="day-analysis-part4-err">我来纠错</view>
+			</view>
+			<view class="day-analysis-part4-testing">{{topicObj.respondAppExamQuestionVo.examPoints[0].optionNo}}{{topicObj.respondAppExamQuestionVo.examPoints[0].pointsName}}</view>
+		</view>
+
+<!-- </view> -->

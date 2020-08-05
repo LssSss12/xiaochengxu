@@ -1,4 +1,3 @@
 <!--pages/landing/landing.wxml-->
 
-<button open-type="getUserInfo" style="margin-top:300rpx;" wx:if="{{!hasUserInfo}}" bindgetuserinfo="comfirm">111</button>
-<view style="height:400rpx;background:red;">22222222</view>
+<button open-type="getUserInfo" style="margin-top:300rpx;background-color:red;" wx:if="{{!hasUserInfo}}" bindgetuserinfo="comfirm">111</button>

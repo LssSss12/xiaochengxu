@@ -14,6 +14,15 @@ const formatNumber = n => {
   return n[1] ? n : '0' + n
 }
 
+const changeDate = (seconds) => {
+  let result = parseInt(seconds)
+  　　let m = Math.floor((result / 60 % 60)) < 10 ? '0' + Math.floor((result / 60 % 60)) : Math.floor((result / 60 % 60))
+  　　let s = Math.floor((result % 60)) < 10 ? '0' + Math.floor((result % 60)) : Math.floor((result % 60))
+  　　result = `${m}:${s}`
+  　　return result
+}
+
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  changeDate:changeDate
 }

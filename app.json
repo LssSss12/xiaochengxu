@@ -2,6 +2,7 @@
 	"pages": [
 		"pages/landing/landing",
 		"pages/tiku/tiku",
+		"pages/sectionAnalysis/analysis",
 		"pages/realTopic/topic",
 		"pages/colect/list",
 		"pages/examCourse/course",
@@ -15,13 +16,15 @@
 		"pages/pep/pep",
 		"pages/pepHome/pep",
 		"pages/topicCard/card",
-		"pages/my/my",
 		"pages/sectionTopic/topic",
-        "pages/user/user",
-        "pages/subject/subject",
-        "pages/wrongPoint/wrongPoint",
-        "pages/pointDetail/pointDetail",
-		"pages/errorTopic/topic"
+		"pages/user/user",
+		"pages/subject/subject",
+		"pages/wrongPoint/wrongPoint",
+		"pages/pointDetail/pointDetail",
+		"pages/errorTopic/topic",
+		"pages/errors/topic",
+		"pages/speedTopic/topic",
+		"pages/colectTopic/topic"
 	],
 	"window": {
 		"backgroundTextStyle": "light",
@@ -36,7 +39,7 @@
 		"van-nav-bar": "vant/nav-bar/index",
 		"van-button": "vant/button/index",
 		"van-tab": "vant/tab/index",
-        "van-rate": "vant/rate/index",
+		"van-rate": "vant/rate/index",
 		"van-tabs": "vant/tabs/index",
 		"van-row": "vant/row/index",
 		"van-col": "vant/col/index",
@@ -48,22 +51,22 @@
 		"van-tag": "vant/tag/index"
 	},
 	"tabBar": {
-		"color": "#9CA5B6",
-		"selectedColor": "#6577FF",
+		"color": "#33333",
+		"selectedColor": "#FF7944",
 		"borderStyle": "white",
 		"backgroundColor": "#f7f7f7",
 		"list": [
 			{
 				"text": "题库",
 				"pagePath": "pages/tiku/tiku",
-				"iconPath": "images/contract.png",
-				"selectedIconPath": "images/select_contract.png"
+				"iconPath": "images/tiku_w.png",
+				"selectedIconPath": "images/tiku.png"
 			},
 			{
 				"text": "我的",
 				"pagePath": "pages/user/user",
-				"iconPath": "images/my.png",
-				"selectedIconPath": "images/select_my.png"
+				"iconPath": "images/my_w.png",
+				"selectedIconPath": "images/my.png"
 			}
 		]
 	},

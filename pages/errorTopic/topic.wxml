@@ -7,81 +7,70 @@
 	placeholder="true"
   bind:click-left="onClickLeft"
 />
-<view class="section">
-<view class="section-head">
-	<view class="section-head-l">错题答对2次后，自动移出错题集</view>
-	<van-switch checked="{{ checked }}" bindchange='onChange' size="36rpx" />
-</view>
-
-<!-- 一级 -->
-<view class="section-level1" wx:for="{{sections}}" wx:key="id" wx:for-item="level1" wx:for-index="index1">
-	<view class="section-level-con" data-level="1" data-index="{{index1}}" data-id="{{level1.chapterId}}" catch:tap="slectDown">
-		<view>
-			<view class="section-level-con-top">
-				<text class="section-level1-top-icon" wx:if="{{!level1.show}}">+</text>
-				<text class="section-level1-top-icon" wx:if="{{level1.show}}">-</text>
-				<text class="section-level1-title">{{level1.chapterName}}</text>
+	<view class="topic-title">
+				<view class="topic-title-l">{{title}}</view>
+				<view class="topic-title-r">
+					<text style="color:#e36a30;">{{index}}</text>
+					<text>/{{topicLength}}</text>
+				</view>
 			</view>
-			<view>
-				<text class="section-level-count">{{level1.doneTitleNum}}/{{level1.totalTitleNum}}</text>
-				<text class="section-level-count">正确率</text>
-				<text class="section-level-accuracy">{{level1.accuracy}}%</text>
+			<view class="topic-progress">
+				<view  class="topic-progress-curr" style="width:{{width}}%;"></view>
+	</view>
+	<view class="day" bindtouchstart="touchStart" bindtouchend="touchEnd">
+		<view class="day-type" wx:if="{{examObj.isMultipleChoice === 0}}">单项选择题</view>
+		<view class="day-type" wx:if="{{examObj.isMultipleChoice === 1}}">多项选择题</view>
+		<view class="day-title">{{examObj.questionsTitle}}</view>
+		<!-- 单选 -->
+		<view class="day-choose" wx:if="{{examObj.isMultipleChoice === 0}}">
+			<view class="day-choose-list {{(curAnwser[0]===item.optionNo&&item.isRight=== 0&&analysis)?'err':''}} {{(item.isRight=== 1&&analysis)?'correct':''}}" wx:for="{{examObj.examQuestionsOptions}}" wx:key="index" data-index="{{index}}" data-answer="{{item.optionNo}}" data-right="{{item.isRight}}" bindtap="chkAnwser">
+				<view class="day-choose-list-label">{{item.optionNo}}</view>
+				<view class="day-choose-list-text">{{item.optionContent}}</view>
 			</view>
 		</view>
-		<view><van-icon class="edit-icon" name="edit" data-id="{{level1.chapterId}}" catchtap="startAction" /></view>
-	</view>
-	<!-- 二级 -->
-	<view class="section-level2" wx-if="{{level1.show}}" wx:for="{{level1.children}}" wx:for-index="index2" wx:key="id" wx:for-item="level2">
-		<view class="section-level-con" data-level="2" data-parent1="{{index1}}" data-index="{{index2}}" data-id="{{level2.chapterId}}" catch:tap="slectDown">
-			<view>
-				<view class="section-level-con-top">
-					<van-icon class="{{level2.show?'rotate':''}}" name="arrow-down" />
-					<text class="section-level2-title">{{level2.chapterName}}</text>
+		<!-- 多选 -->
+		<view class="day-choose" wx:if="{{examObj.isMultipleChoice === 1}}">
+			<view class="day-choose-list {{item.isChk&&!analysis?'chkGrey':''}}" wx:for="{{examObj.examQuestionsOptions}}" wx:key="index" data-index="{{index}}" data-answer="{{item.optionNo}}" data-right="{{item.isRight}}" bindtap="chkAnwser">
+				<view class="day-choose-list-label {{!analysis?'chk-label':''}}" wx:if="{{!analysis}}">{{item.optionNo}}</view>
+				<view class="day-choose-list-label moreGreen" wx:if="{{analysis&&item.isRight=== 1&&!item.isChk}}">{{item.optionNo}}</view>
+				<view class="day-choose-list-label moreGreen" wx:if="{{analysis&&item.isRight=== 1&&item.isChk}}">
+					<van-icon name="success" style="font-size:44rpx;margin-top:12rpx;"/>
 				</view>
-				<view>
-					<text class="section-level-count">{{level2.doneTitleNum}}/{{level2.totalTitleNum}}</text>
-					<text class="section-level-count">正确率</text>
-					<text class="section-level-accuracy">{{level2.accuracy}}%</text>
-				</view>
+				<view class="day-choose-list-label moreRed" wx:if="{{analysis&&item.isRight=== 0&&item.isChk}}">X</view>
+				<view class="day-choose-list-label" wx:if="{{analysis&&item.isRight=== 0&&!item.isChk}}">{{item.optionNo}}</view>
+				<view class="day-choose-list-text">{{item.optionContent}}</view>
 			</view>
-			<view><van-icon class="edit-icon" name="edit" data-id="{{level2.chapterId}}" catchtap="startAction" /></view>
 		</view>
-		<!-- 三级 -->
-		<view class="section-level3" wx-if="{{level2.show}}" wx:for="{{level2.children}}" wx:for-index="index3"  wx:key="id" wx:for-item="level3">
-			<view class="section-level-con" data-level="3" data-parent1="{{index1}}" data-id="{{level3.chapterId}}" data-parent2="{{index2}}" data-index="{{index3}}" catch:tap="slectDown">
-				<view>
-					<view class="section-level-con-top">
-						<van-icon class="section-level3-top-icon" name="circle" />
-						<text class="section-level2-title">{{level3.chapterName}}</text>
-					</view>
-					<view>
-						<text class="section-level-count">{{level3.doneTitleNum}}/{{level3.totalTitleNum}}</text>
-						<text class="section-level-count">正确率</text>
-						<text class="section-level-accuracy">{{level3.accuracy}}</text>
-					</view>
+		<van-button class="{{curAnwser.length === 0?'grey':''}}" wx:if="{{examObj.isMultipleChoice  === 1&&analysisBtn}}" type="primary" block bindtap="getDayanalysis">查看解析</van-button>
+
+		<view wx:if="{{analysis}}" class="day-analysis">
+			<view class="day-analysis-part1 clear">
+				<view class="day-analysis-part1-part">
+					<text class="day-analysis-part1-text">正确答案 </text>
+					<text class="day-analysis-part1-ABCD"> {{answerObj.examQuestionsAnalysisEntity.rightAnswers}}</text>
 				</view>
-				<view><van-icon class="edit-icon" name="edit"  data-id="{{level3.chapterId}}" catchtap="startAction" /></view>
+					<view class="day-analysis-part1-part">
+					<text class="day-analysis-part1-text">我的答案 </text>
+					<text class="{{answerObj.answerResult===0?'moreRedText':''}} {{answerObj.answerResult===1?'moreGreenText':''}} {{answerObj.answerResult===2?'moreYellowText':''}}"> {{curAnwserStr}}</text>
+				</view>
 			</view>
-				<!-- 四级 -->
-			<view class="section-level4" wx-if="{{level3.show}}" wx:for="{{level3.children}}" wx:for-index="index4"  wx:key="id" wx:for-item="level4">
-				<view class="section-level-con" data-parent1="{{index1}}" data-parent2="{{index2}}" data-id="{{level4.chapterId}}" data-parent3="{{index3}}" data-index="{{index4}}" catch:tap="slectDown">
-					<view>
-						<view class="section-level-con-top">
-							<van-icon class="section-level3-top-icon" name="circle" />
-							<text class="section-level2-title">{{level4.chapterName}}</text>
-						</view>
-						<view>
-							<text class="section-level-count">{{level4.doneTitleNum}}/{{level4.totalTitleNum}}</text>
-							<text class="section-level-count">正确率</text>
-							<text class="section-level-accuracy">{{level4.accuracy}}%</text>
-						</view>
-					</view>
-					<view><van-icon class="edit-icon" catchtap="startAction"  data-id="{{level4.chapterId}}" name="edit" /></view>
+			<view class="day-analysis-part2">本题我做了 {{answerObj.doTotalTimes}} 次，作对了<text style="color:#f08052;"> {{answerObj.doRightTimes}} </text>次</view>
+			<view class="day-analysis-part3 clear">
+				<view class="day-analysis-part3-l">
+					<view class="day-analysis-part3-top">{{answerObj.doRightAccuracy}}%</view>
+					<view class="day-analysis-part3-bottom">全站正确率</view>
 				</view>
-			</view>	
-		</view>	
+				<view class="day-analysis-part3-r">
+					<view class="day-analysis-part3-top">{{answerObj.difficulty}}</view>
+					<view class="day-analysis-part3-bottom">测试题难度</view>
+				</view>
+			</view>
+
+			<view class="day-analysis-part4 clear">
+				<view class="day-analysis-part4-title">参考解析</view>
+				<view class="day-analysis-part4-analysis">{{answerObj.examQuestionsAnalysisEntity.analysisContent}}</view>
+				<view class="day-analysis-part4-title">相关考点</view>
+				<view class="day-analysis-part4-testing">{{examObj.examPoints[0].optionNo}}{{examObj.examPoints[0].pointsName}}></view>
+			</view>
+		</view>
 	</view>
-</view>
-</view>	
-
-

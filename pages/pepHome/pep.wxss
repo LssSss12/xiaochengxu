@@ -1,10 +1,15 @@
 .pep{
 	padding: 60rpx;
+	position: absolute;
+width: 100%;
+box-sizing: border-box;
+top: 34%;
 }
 .pep-box{
 	padding: 60rpx;
 	box-shadow: 0rpx 0rpx 10rpx #ddd;
 	border-radius: 8rpx;
+	background-color: #fff;
 }
 .pep-box-t{
 	margin-bottom: 80rpx;

@@ -6,16 +6,19 @@ let time = 0;//从按下到松开共多少时间*100
 Page({
 	data: {
 		courseId:'',//科目id
+		courseName:'',
 		paperId:'',//真题集id
-		time: 45 * 60 * 1000,
+		time: 0,
 		width: 0,//进度条
 		isRest: false,
 		modal: false,
+		modal2: false,
 		topicObj:{},//题目信息
 		answerArr: [],
 		serialNumber:1,//当前第几题
 		topicLength:0,//题目数量,
-		userExamPaperRecordId:''//答题卡ID
+		userExamPaperRecordId:'',//答题卡ID
+		topicCard:[]
 	},
 	onLoad: function (options) {
 		//正常答题流程会有这些值，答题卡回来没有，去缓存里取
@@ -25,7 +28,9 @@ Page({
 		}
 		this.setData({
 			courseId:	wx.getStorageSync('courseId'),
-			paperId:wx.getStorageSync('paperId')
+			courseName:wx.getStorageSync('courseName'),
+			paperId:wx.getStorageSync('paperId'),
+			time:options.totalTime*60*1000
 		})
 		//答题卡回跳
 		if(options.from === 'card'){
@@ -33,6 +38,7 @@ Page({
 				serialNumber:parseFloat(options.serialNumber),
 				userExamPaperRecordId:options.userExamPaperRecordId,
 				time:parseFloat(wx.getStorageSync('remain')),
+				paperName:wx.getStorageSync('paperName'),
 				topicLength:options.topicLength
 			},()=>{
 				this.getTopic()
@@ -47,9 +53,14 @@ Page({
 			api.iniPastExamPages(param).then(res => {
 				this.setData({
 					topicObj:res.data.respondAppExamQuestionVo,
+					topicList:res.data.userExamTitleRecordEntityList,
 					topicLength:res.data.userExamPaperRecordEntity.totalTitle,
-					userExamPaperRecordId:res.data.userExamPaperRecordEntity.id
+					userExamPaperRecordId:res.data.userExamPaperRecordEntity.id,
+					paperName:res.data.userExamPaperRecordEntity.paperName,
+					width:this.data.serialNumber/res.data.userExamPaperRecordEntity.totalTitle*100,
 				})
+				wx.setStorageSync('userExamPaperRecordId', res.data.userExamPaperRecordEntity.id)
+				wx.setStorageSync('paperName', res.data.userExamPaperRecordEntity.paperName)
 				if(res.data.respondAppExamQuestionVo.userAnswer&&res.data.respondAppExamQuestionVo.userAnswer!==''){
 					this.setData({
 						answerArr:res.data.respondAppExamQuestionVo.userAnswer.split('')
@@ -57,6 +68,12 @@ Page({
 						this.chkUserAnswer()
 					})
 				}
+				//案例分析处理图片
+			if(res.data.respondAppExamQuestionVo){
+				if(res.data.respondAppExamQuestionVo.titleType === 2){
+					this.dealRichImg(res.data.respondAppExamQuestionVo.respondExamStemVo.questionsStem)
+				}
+			}
 			})
 		}
 		
@@ -94,25 +111,48 @@ Page({
 	finished(){},
 	//获取题目
 	getTopic() {
+		let index = this.data.serialNumber
 		let param = {
 			userExamPaperRecordId:this.data.userExamPaperRecordId,
-			serialNumber: this.data.serialNumber
+			serialNumber: this.data.topicList[index - 1].serialNumber
 		}
 		api.userSkipQuestionTitle(param).then(res => {
 			this.setData({
-				topicObj: res.data,
+				topicObj: res.data.respondAppExamQuestionVo,
 				width:this.data.serialNumber/this.data.topicLength*100,
 				isColect:false
 			})
-			if(res.data.userAnswer&&res.data.userAnswer!==''){
+			// if(res.data.userExamTitleRecordEntity){
+			// 	if(res.data.userExamTitleRecordEntity.userAnswer&&res.data.userExamTitleRecordEntity.userAnswer!==''){
+			// 		this.setData({
+			// 			answerArr:res.data.userExamTitleRecordEntity.userAnswer.split('')
+			// 		},()=>{
+			// 			this.chkUserAnswer()
+			// 		})
+			// 	}
+			// }
+			if(this.data.topicCard[index - 1]&&this.data.topicCard[index - 1] !== ''){
 				this.setData({
-					answerArr:res.data.userAnswer.split('')
+					answerArr:this.data.topicCard[index - 1].split('')
 				},()=>{
 					this.chkUserAnswer()
 				})
 			}
+			//案例分析处理图片
+			if(res.data.respondAppExamQuestionVo){
+				if(res.data.respondAppExamQuestionVo.titleType === 2){
+					this.dealRichImg(res.data.respondAppExamQuestionVo.respondExamStemVo.questionsStem)
+				}
+			}
 		})
 	},
+		//处理分析题中的img
+		dealRichImg(str){
+			let domStr = str.replace(new RegExp("ᑅ ≮","gm"),'<img style="max-width:100%;height:auto;" src="').replace(new RegExp("≯ᐷ","gm"),'"></img>')
+			this.setData({
+				questionsStem:"【" + this.data.topicObj.respondExamStemVo.questionsNo + "】" + domStr
+			})
+		},
 	//选择答案
 	chkAnswer(e) {
 		let answerArr = this.data.answerArr
@@ -141,6 +181,18 @@ Page({
 						answerArr:answerArr
 					})
 				}
+				this.pushAnswer()
+				if(this.data.serialNumber === this.data.topicLength){
+					this.jiaojuan()
+					return;
+				}else{
+					let serialNumber = this.data.serialNumber
+					this.setData({
+						serialNumber:serialNumber + 1
+					},res => {
+						this.getTopic()
+					})
+				}
 			}
 			//多选
 		}else if(this.data.topicObj.isMultipleChoice === 1){
@@ -165,14 +217,19 @@ Page({
 	//提交答案
 	pushAnswer() {
 		if(this.data.answerArr.length > 0){
+			let index = this.data.serialNumber
 			let param ={
 				userExamPaperRecordId:this.data.userExamPaperRecordId,
-				serialNumber: this.data.serialNumber,
+				serialNumber: this.data.topicList[index - 1].serialNumber,
 				userAnswer:this.data.answerArr.join('')
 			}
+
+			let topicCard = this.data.topicCard
+			topicCard[index - 1] = this.data.answerArr.join('')
 			api.userAnswerQuestion(param).then(res => {
 					this.setData({
-						answerArr: []
+						answerArr: [],
+						topicCard:topicCard
 					})
 			}).catch()
 		}
@@ -201,10 +258,8 @@ touchEnd: function(e) {
 			this.pushAnswer()
 			if (tmX<0){
 				if(this.data.serialNumber === this.data.topicLength){
-					wx.showToast({
-						title: '题目已经答完，请交卷~',
-						icon: 'none'
-					})
+					this.pushAnswer()
+					this.jiaojuan()
 					return;
 			}else{
 				this.setData({
@@ -237,9 +292,10 @@ touchEnd: function(e) {
 //交卷
 jiaojuan() {
 	const remain = this.selectComponent('.count-down').remain;
-	wx.setStorageSync('remain',remain)
+	console.log(Math.ceil((this.data.time - parseFloat(remain))/1000))
+	wx.setStorageSync('remain',Math.ceil((this.data.time - parseFloat(remain))/1000))
 	wx.navigateTo({
-		url: '../topicCard/card?id=' + this.data.userExamPaperRecordId,
+		url: '../topicCard/card?from=' + 'real'
 	})
 },
 //收藏
@@ -273,8 +329,18 @@ collect(){
 	}
 },
 onClickLeft() {
-	wx.navigateBack({
-		delta: 1
+	this.setData({
+		modal2:true
+	})
+},
+cancleJ() {
+	this.setData({
+		modal2:false
+	})
+},
+confirmJ() {
+	wx.switchTab({
+		url: '../tiku/tiku',
 	})
 }
 })

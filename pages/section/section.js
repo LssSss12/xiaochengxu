@@ -9,7 +9,7 @@ Page({
 	onLoad(options){
 		this.setData({
 			examCourseId:options.examCourseId,
-			courseName:options.courseName
+			courseName:wx.getStorageSync('courseName')
 		},() => {
 			this.getSection('sections',0)
 		})
@@ -89,8 +89,10 @@ Page({
 	},
 	startAction(e){
 		let id = e.currentTarget.dataset.id
+		let title = e.currentTarget.dataset.title
+		wx.setStorageSync('paperName', title)
 		wx.navigateTo({
-			url: '../sectionTopic/topic?courseId='+this.data.examCourseId + '&chapterId=' + id + '&courseName=' + this.data.courseName,
+			url: '../sectionTopic/topic?courseId='+this.data.examCourseId + '&chapterId=' + id
 		})
 	}
 }

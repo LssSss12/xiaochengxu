@@ -41,19 +41,21 @@ Page({
 			}
 		}else{
 			let str = 'courses.majorList['+index+'].chked'
-			if(!this.data.courses.majorList[index].chked){
-				courseArr.push(id)
+		
+			for(let i=0;i<this.data.courses.majorList.length;i++){
+				if(courseArr.indexOf(this.data.courses.majorList[i].id)>-1){
+					courseArr.splice(courseArr.indexOf(this.data.courses.majorList[i].id),1)
+				}
+				let strAll = 'courses.majorList['+i+'].chked'
+				this.setData({
+					[strAll]:false
+				})
+			}
+			courseArr.push(id)
 				this.setData({
 					[str]:true,
 					coursesId:courseArr
 				})
-			}else{
-				courseArr.splice(courseArr.indexOf(id),1)
-				this.setData({
-					[str]:false,
-					coursesId:courseArr
-				})
-			}
 		}
 	},
 	//提交选择题目

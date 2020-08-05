@@ -1,0 +1,259 @@
+.day{
+	box-sizing: border-box;
+}
+.richcontent{
+	font-size: 32rpx;
+	color: #333;
+}
+.padding30{
+	padding: 0rpx 30rpx;
+}
+.fenxi-t,.fenxi-b{
+	padding: 20rpx 30rpx;
+}
+.fenxi-b-qus{
+	font-size: 32rpx;
+	color: #333;
+}
+.fenxi-b-text{
+	font-size: 28rpx;
+	color: #9c9c9e;
+	border-top: 2rpx solid #ddd;
+padding-top: 20rpx;
+margin-top: 10px;
+}
+.fenxi-t{
+	overflow-y: scroll;
+	height:600rpx;
+}
+.fenxi-b{
+	border-top: 20rpx solid #ddd;
+	position: relative;
+}
+.fenxi-b-icon{
+	position: absolute;
+	top: -32rpx;
+	left: 50%;
+	background: #fff;
+	padding: 2rpx 8rpx;
+	margin-left: -14rpx;
+}
+.day-type{
+	width:160rpx;
+	height:40rpx;
+	line-height: 40rpx;
+	text-align: center;
+	background-color: #f7f7f7;
+	font-size: 24rpx;
+	color: #9c9c9e;
+}
+.day-title{
+	font-size: 32rpx;
+	color: #333;
+}
+.day-choose{
+	margin-top: 40rpx;
+}
+.van-ellipsis{
+	font-size: 32rpx;
+}
+.day-choose-list{
+	display: flex;
+}
+.day-choose-list-label{
+	width: 68rpx;
+	height:68rpx;
+	text-align: center;
+	border-radius: 50%;
+	line-height: 68rpx;
+	border:2rpx solid #ddd;
+	color: #9c9c9e;
+	font-size: 32rpx;
+	font-weight: bold;
+	margin:0rpx 20rpx 28rpx 0rpx;
+}
+.day-choose-list-text{
+	font-size: 32rpx;
+	color: #666;
+	line-height: 72rpx;
+	width: 600rpx;
+}
+.day-analysis{
+
+}
+.day-analysis-part1{
+	margin: 80rpx 0rpx 26rpx 0rpx;
+}
+.day-analysis-part1-part{
+	float: left;
+	width: 50%;
+	text-align: center;
+}
+.day-analysis-part1-text{
+	color: #333;
+	font-size: 32rpx;
+}
+.day-analysis-part1-ABCD{
+	color: #76d08c;
+}
+.day-analysis-part1-no{
+	color: #666;
+	font-size: 28rpx;
+}
+.ABCD-err{
+	color: #cc4842!important;
+}
+.day-analysis-part2{
+	width: 550rpx;
+	height: 40rpx;
+	background-color: #f7f7f7;
+	font-size: 24rpx;
+	color: #9c9c9e;
+	text-align: center;
+	line-height: 40rpx;
+	margin: 0rpx auto;
+	border-radius: 28rpx;
+}
+.day-analysis-part3{
+	width: 690rpx;
+	height:160rpx;
+	background-color: #fef6f4;
+	margin-top: 40rpx;
+	padding: 20rpx;
+	text-align: center;
+	box-sizing: border-box!important;
+}
+.day-analysis-part3-l{
+	width: 323rpx;
+	float: left;
+	border-right: 2rpx solid #f9d7c9;
+	height: 100%;
+}
+.day-analysis-part3-r{
+	width: 325rpx;
+	float: left;
+	height: 100%;
+}
+.day-analysis-part3-top{
+	font-size: 40rpx;
+	color: #f08052;
+	margin: 14rpx 0rpx 10rpx 0rpx;
+}
+.day-analysis-part3-bottom{
+	font-size: 24rpx;
+	color:#333;
+}
+.day-analysis-part4-t{
+	margin:40rpx 0rpx 30rpx 0rpx;
+}
+.day-analysis-part4-title{
+	font-size: 32rpx;
+	color: #333;
+	padding-left: 20rpx;
+	border-left: 6rpx solid #f08052;
+	float:left;
+}
+.day-analysis-part4-err{
+	float: right;
+	height: 40rpx;
+	width: 128rpx;
+	text-align: center;
+	line-height: 40rpx;
+	font-size: 24rpx;
+	color: #9c9c9e;
+	border: 2rpx solid #eee;
+	border-radius: 4rpx;
+}
+.day-analysis-part4-analysis{
+	font-size: 32rpx;
+	color: #666;
+}
+.day-analysis-part4-testing{
+	margin-bottom: 30rpx;
+	float: left;
+	background-color: #FFF6F3;
+	font-size: 24rpx;
+	color: #F36210;
+	text-align: center;
+	margin: 0rpx auto;
+	padding: 8rpx 20rpx;
+	border-radius: 28rpx;
+}
+.err .day-choose-list-label{
+	background-color: #cc4842!important;
+	color: #ffffff!important;
+	border-color: #cc4842!important;
+}
+.err .day-choose-list-text{
+	color: #cc4842!important;
+}
+.analysis-title{
+	display: flex;
+	justify-content: space-between;
+	height: 60rpx;
+	line-height: 60rpx;
+	padding: 0rpx 30rpx;
+	background-color: #f7f7f7;
+}
+.analysis-title-l{
+	font-size: 28rpx;
+	color: #9c9c9e;
+}
+.analysis-title-r{
+	font-size: 28rpx;
+	color: #9c9c9e;
+}
+.analysis-title-r-num{
+	font-size: 28rpx;
+	color: #707070;
+	font-weight: bold;
+}
+.err{
+	background-color: #FFEEEE!important;
+}
+.err .analysis-title-l,.err .analysis-title-r-num{
+	color: #F30F0D!important;
+}
+.notAll{
+	background-color: #FFF3DC!important;
+}
+.notAll .analysis-title-l,.notAll .analysis-title-r-num{
+	color: #FFAA08!important;
+}
+.right{
+	background-color: #EEFFF5!important;
+}
+.right .analysis-title-l,.right .analysis-title-r-num{
+	color: #50D485!important;
+}
+.rightNochk{
+	background-color: #50D485;
+color: #fff;
+border-color: #50D485;
+}
+.moreGreen{
+	background-color: #50D485;
+	color: #fff;
+	border-color: #50D485;
+}
+.moreRed{
+	background-color: #DC3A3A;
+	color: #fff;
+	border-color: #DC3A3A;
+}
+.moreRedText{
+	color: #DC3A3A;
+}
+.moreGreenText{
+	color: #50D485;
+}
+.moreYellowText{
+	color: #FFAA08;
+}
+.title-label{
+	font-size: 24rpx;
+color: #9c9c9e;
+background: #f7f7f7;
+padding: 8rpx 20rpx;
+border-radius: 34rpx;
+}

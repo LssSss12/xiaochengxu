@@ -14,7 +14,7 @@ Page({
 		},
 		goTipic() {
 			wx.navigateTo({
-				url: '../realTopic/topic?courseId=' + this.data.courseId + '&paperId=' + this.data.paperId,
+				url: '../realTopic/topic?courseId=' + this.data.courseId + '&paperId=' + this.data.paperId + '&totalTime=' + this.data.obj.totaltime,
 			})
 		},
 	onClickLeft() {

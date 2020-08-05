@@ -6,7 +6,7 @@ Page({
 	},
 	onLoad: function (options) {
 		let param = {
-			examCourseId:options.id
+			examCourseId:wx.getStorageSync('courseId')
 		}
 		api.getUserPreviousExamPapers(param)
 		.then(res => {
@@ -15,7 +15,7 @@ Page({
 			})
 		})
 		this.setData({
-			examId:options.id
+			examId:wx.getStorageSync('courseId')
 		})
 	},
 	startTopic(e) {
@@ -26,8 +26,8 @@ Page({
 		})
 	},
 	onClickLeft() {
-		wx.navigateBack({
-			delta: 1
+		wx.switchTab({
+			url: '../tiku/tiku',
 		})
 	}
 })

@@ -1,13 +1,21 @@
 let api = require('../../utils/api.js')
+let app = getApp();
 Page({
 	data: {
 		modal:false,
 		cards:[],
-		answerMsg:''
+		answerMsg:'',
+		from:'',
+		userExamPaperRecordId:'',
+		navHeight:app.globalData.navHeight
 	},
 	onLoad: function (options) {
+		this.setData({
+			from:options.from,
+			userExamPaperRecordId:wx.getStorageSync('userExamPaperRecordId')
+		})
 		let param ={
-			userExamPaperRecordId:options.id
+			userExamPaperRecordId:wx.getStorageSync('userExamPaperRecordId')
 		}
 		api.userQuestionTitleRecordDetails(param).then(res => {
 			this.setData({
@@ -23,8 +31,16 @@ Page({
 	//跳转题目详情
 	topicDetail(e) {
 		let index = e.currentTarget.dataset.index
+		let url=''
+		if(this.data.from === 'section'){
+			url = 'sectionTopic'
+		}else if(this.data.from === 'real'){
+			url = 'realTopic'
+		}else if(this.data.from === 'speed'){
+			url = 'speedTopic'
+		}
 		wx.redirectTo({
-			url: '../realTopic/topic?serialNumber='+index + "&userExamPaperRecordId=" + this.data.cards[0].userExamPaperId + "&topicLength=" + this.data.cards.length + "&from=" + 'card'
+			url: '../'+ url +'/topic?serialNumber='+index + "&userExamPaperRecordId=" + this.data.userExamPaperRecordId + "&topicLength=" + this.data.cards.length + "&from=" + 'card'
 		})
 	},
 	jiaojuan() {
@@ -46,10 +62,10 @@ Page({
 		})
 	},
 	confirmJ() {
-		
-		let remain = 45 * 60 * 1000 - parseFloat(wx.getStorageSync('remain'))
+
+		let remain = parseFloat(wx.getStorageSync('remain'))
 		let param = {
-			userExamPaperRecordId:this.data.cards[0].userExamPaperId,
+			userExamPaperRecordId:this.data.userExamPaperRecordId,
 			durationTime:remain
 		}
 		api.userSubmitAnswerSheet(param).then(res=>{
@@ -57,7 +73,7 @@ Page({
 				modal: false
 			})
 			wx.navigateTo({
-				url:'../report/report?report=' + JSON.stringify(res.data)
+				url:'../report/report?report=' + JSON.stringify(res.data) + "&from=" + this.data.from
 			})
 	})
 	}

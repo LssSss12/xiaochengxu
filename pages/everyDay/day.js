@@ -11,9 +11,14 @@ Page({
 		isOne: 0, //单选多选
 		anwser: '',
 		curAnwser: [],
-		curAnwserStr: ''
+		curAnwserStr: '',
+		userExamTitleRecordId: '',
+		analysisBtn:true
 	},
 	onLoad: function (options) {
+		this.setData({
+			tabId:wx.getStorageSync('courseId')
+		})
 		let param = {}
     api.getUserExamCourseInfo(param)
     .then(res => {
@@ -48,7 +53,9 @@ Page({
 		.then(res=>{
 			this.setData({
 				examObj:res.data,
-				isOne:res.data.respondAppExamQuestionVo.isMultipleChoice
+				isOne:res.data.respondAppExamQuestionVo.isMultipleChoice,
+				analysisBtn:true,
+				examPoints:res.data.respondAppExamQuestionVo.examPoints
 			})
 			if(res.data.userExamTitleRecordEntity){
 				if(res.data.userExamTitleRecordEntity.userAnswer&&res.data.userExamTitleRecordEntity.userAnswer!==''){
@@ -79,14 +86,14 @@ Page({
 			this.getDayAnswer(anwserStr)
 			this.setData({
 				analysis:true,
-				curAnwserStr:anwserStr
+				curAnwserStr:anwserStr,
+				analysisBtn:false
 			})
 		}
 	},
 		//获取每日一题答案
 	getDayAnswer(answer) {
 		let param = {
-			examCourseId:this.data.tabId,
 			questionsTitleId:this.data.examObj.respondAppExamQuestionVo.questionsTitleId,
 			userAnswer:answer
 		}

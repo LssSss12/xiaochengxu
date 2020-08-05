@@ -114,3 +114,12 @@ text-align: center;
 	font-size: 24rpx;
 	color:#666;
 }
+.van-nav-bar__title{
+	font-size: 36rpx!important;
+}
+.van-tab .van-ellipsis{
+	font-size: 32rpx;
+}
+.van-tab.van-tab--active .van-ellipsis{
+	font-size: 36rpx;
+}

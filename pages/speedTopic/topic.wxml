@@ -1,0 +1,78 @@
+<van-nav-bar
+  title="{{courseName}}"
+  left-arrow
+	z-index="999"
+	fixed
+	safe-area-inset-top
+	placeholder="true"
+  bind:click-left="onClickLeft"
+/>
+<view class="topic" bindtouchstart="touchStart" bindtouchend="touchEnd">
+	<view class="topic-time" bindtap="rest">
+		<image wx:if="{{!modal}}" src="../../images/play.png" style="width:26rpx;height:26rpx;margin-right:10rpx;"></image>
+		<image wx:if="{{modal}}" src="../../images/stop.png" style="width:26rpx;height:26rpx;margin-right:10rpx;"></image>
+		<text style="color:#F36210;font-size:28rpx;">计时 {{timeStr}}</text>
+	</view>
+	<view class="topic-title">
+		<view class="topic-title-l">智能速练</view>
+		<view class="topic-title-r">
+			<text style="color:#e36a30;">{{serialNumber}}</text>
+			<text>/{{topicLength}}</text>
+		</view>
+	</view>
+	<view class="topic-progress">
+		<view  class="topic-progress-curr" style="width:{{width}}%;"></view>
+	</view>
+
+	<view class="day">
+		<view style="padding: 10px 15px;">
+			<text class="title-label" wx:if="{{topicObj.isMultipleChoice===0&&topicObj.titleType===0}}">单项选择题</text>
+				<text class="title-label" wx:if="{{topicObj.isMultipleChoice===1&&topicObj.titleType===0}}">多项选择题</text>
+				<text class="title-label" wx:if="{{topicObj.titleType===2}}">案例分析题</text>
+				<text class="title-label" wx:if="{{topicObj.titleType===1}}">案例选择题</text>
+		</view>
+		<view style="padding:20rpx 30rpx;" wx:if="{{topicObj.titleType===0}}">
+			<view class="day-title">
+		 		【{{topicObj.questionsNo}}】{{topicObj.questionsTitle}}
+			</view>
+			<view class="day-choose">
+				<view class="day-choose-list" wx:for="{{topicObj.examQuestionsOptions}}" wx:key="index" data-index="{{index}}" data-option="{{item.optionNo}}"  data-right="{{item.isRight}}" bindtap="chkAnswer">
+					<view class="day-choose-list-label {{item.isChk?'chkGrey':''}}">{{item.optionNo}}</view>
+					<view class="day-choose-list-text">{{item.optionContent}}</view>
+				</view>
+			</view>
+		</view>
+
+		<view class="fenxi" wx:if="{{topicObj.titleType===2}}">
+			<view class="fenxi-t"><rich-text name="questionsStem" class='content' nodes="{{questionsStem}}"></rich-text></view>
+			<view class="fenxi-b">
+				<van-icon class="fenxi-b-icon" name="wap-nav"></van-icon>
+				<view class="fenxi-b-qus">【{{topicObj.questionsNo}}】 {{topicObj.questionsTitle}}</view>
+				<view class="fenxi-b-text">本题不支持手机作答，请在直纸质本上手写作答，可在交卷后核对答案并查看解析。</view>
+			</view>
+		</view>
+	</view>
+
+	<view class="topic-b clear">
+		<view class="jiao" bindtap="jiaojuan">交卷</view>
+		<view class="share" > 
+			<image src="../../images/share.png" style="width:32rpx;height:32rpx;margin-top:12rpx;"></image>
+			<button style="font-size:28rpx;" open-type='share' title="这道题难住我了，快看看你会吗？">分享</button>
+		</view>
+		<view style="font-size:28rpx;" class="collect" bindtap="collect" wx:if="{{topicObj.isCollected}}"><van-icon class="colected" name="star"/>已收藏</view>
+		<view style="font-size:28rpx;" class="collect" bindtap="collect" wx:if="{{!topicObj.isCollected}}"><van-icon name="star-o"/>收藏</view>
+	</view>
+</view>
+<view class="ls-modal {{modal?'show':''}}">
+	<view class="ls-rdialog">
+		<view class="ls-content">
+			<view class="ls-title">休息一下</view>
+			<view class="ls-message">
+				共<text style="color:#e36a30;"> {{topicLength}} </text>道题，还有<text style="color:#e36a30;"> {{topicLength - serialNumber + 1}} </text>道题没做
+			</view>
+		</view>
+		<view class="ls-footer">
+			<view class="ls-btn" bindtap="timeGo">继续做题</view>
+		</view>
+	</view>	
+</view>

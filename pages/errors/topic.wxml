@@ -1,0 +1,81 @@
+<van-nav-bar
+  title="{{courseName}}"
+  left-arrow
+	z-index="999"
+	fixed
+	safe-area-inset-top
+	placeholder="true"
+  bind:click-left="onClickLeft"
+/>
+<view class="section">
+<view class="section-head">
+	<view class="section-head-l">错题答对2次后，自动移出错题集</view>
+	<van-switch checked="{{ checked }}" active-color="#fa6228" bindchange='onChange' size="36rpx" />
+</view>
+
+<!-- 一级 -->
+<view class="section-level1" wx:for="{{sections}}" wx:key="id" wx:for-item="level1" wx:for-index="index1">
+	<view class="section-level-con" data-level="1" data-index="{{index1}}" data-id="{{level1.chapterId}}" catch:tap="slectDown">
+		<view>
+			<view class="section-level-con-top">
+				<text class="section-level1-top-icon" wx:if="{{!level1.show}}">+</text>
+				<text class="section-level1-top-icon" wx:if="{{level1.show}}">-</text>
+				<text class="section-level1-title">{{level1.chapterNo}}{{level1.chapterName}}</text>
+			</view>
+			<view>
+				<text class="section-level-count">共 <text style="color:#DC3A3A;">{{level1.doneTitleNum}}</text> 道错题</text>
+			</view>
+		</view>
+		<view><van-icon class="edit-icon" name="edit" data-title="{{level1.chapterNo}}{{level1.chapterName}}" data-id="{{level1.ids}}" catchtap="startAction" /></view>
+	</view>
+	<!-- 二级 -->
+	<view class="section-level2" wx-if="{{level1.show}}" wx:for="{{level1.children}}" wx:for-index="index2" wx:key="id" wx:for-item="level2">
+		<view class="section-level-con" data-level="2" data-parent1="{{index1}}" data-index="{{index2}}" data-id="{{level2.chapterId}}" catch:tap="slectDown">
+			<view>
+				<view class="section-level-con-top">
+					<van-icon class="section-level2-top-icon {{level2.show?'rotate':''}}" name="play" />
+					<text class="section-level2-title">{{level2.chapterNo}}{{level2.chapterName}}</text>
+				</view>
+				<view>
+					<text class="section-level-count">共 <text style="color:#DC3A3A;">{{level2.doneTitleNum}}</text> 道错题</text>
+	
+				</view>
+			</view>
+			<view><van-icon class="edit-icon" name="edit" data-title="{{level2.chapterNo}}{{level2.chapterName}}" data-id="{{level2.ids}}" catchtap="startAction" /></view>
+		</view>
+		<!-- 三级 -->
+		<view class="section-level3" wx-if="{{level2.show}}" wx:for="{{level2.children}}" wx:for-index="index3"  wx:key="id" wx:for-item="level3">
+			<view class="section-level-con" data-level="3" data-parent1="{{index1}}" data-id="{{level3.chapterId}}" data-parent2="{{index2}}" data-index="{{index3}}" catch:tap="slectDown">
+				<view>
+					<view class="section-level-con-top">
+						<van-icon class="{{level3.show?'rotate':''}}" name="arrow-down" />
+						<text class="section-level2-title">{{level3.chapterNo}}{{level3.chapterName}}</text>
+					</view>
+					<view>
+						<text class="section-level-count">共 <text style="color:#DC3A3A;">{{level3.doneTitleNum}}</text> 道错题</text>
+					</view>
+				</view>
+				<view><van-icon class="edit-icon" name="edit" data-title="{{level3.chapterNo}}{{level3.chapterName}}"  data-id="{{level3.ids}}" catchtap="startAction" /></view>
+			</view>
+				<!-- 四级 -->
+			<view class="section-level4" wx-if="{{level3.show}}" wx:for="{{level3.children}}" wx:for-index="index4"  wx:key="id" wx:for-item="level4">
+				<view class="section-level-con" data-parent1="{{index1}}" data-parent2="{{index2}}" data-id="{{level4.chapterId}}" data-parent3="{{index3}}" data-index="{{index4}}" catch:tap="slectDown">
+					<view>
+						<view class="section-level-con-top">
+							<van-icon class="section-level3-top-icon" name="circle" />
+							<text class="section-level2-title">{{level4.chapterNo}}{{level4.chapterName}}</text>
+						</view>
+						<view>
+							<text class="section-level-count">共 <text style="color:#DC3A3A;">{{level4.doneTitleNum}}</text> 道错题</text>
+					
+						</view>
+					</view>
+					<view><van-icon class="edit-icon" catchtap="startAction"  data-title="{{level4.chapterNo}}{{level4.chapterName}}" data-id="{{level4.ids}}" name="edit" /></view>
+				</view>
+			</view>	
+		</view>	
+	</view>
+</view>
+</view>	
+
+

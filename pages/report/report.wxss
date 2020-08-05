@@ -1,6 +1,7 @@
 .report{
 	background-color: #f7f7f7;
 	min-height: calc(100% - 88px);
+	padding-bottom: 140rpx;
 }
 .report-head{
 	font-size: 28rpx;
@@ -19,7 +20,8 @@
 }
 .report-top-circle-text1{
 	color: #38EA80;
-	font-size: 36rpx;
+	font-size: 50rpx;
+	font-weight: bold;
 	margin-right: 8rpx;
 }
 .report-top-circle-text2{
@@ -34,10 +36,23 @@
 .report-top-card-list{
 	width: 216rpx;
 	height: 140rpx;
-	background-color: red;
 	padding: 32rpx 0rpx;
 	box-sizing: border-box;
-	border-radius: 8rpx;
+	border-radius: 12rpx;
+	position: relative;
+	display: flex;
+}
+.report-top-card-list image{
+	position: absolute;
+top: 0px;
+left: 0px;
+width: 100%;
+height: 100%;
+}
+.report-top-card-list-part{
+	z-index: 1;
+	margin: 0px auto;
+
 }
 .report-top-card-list-text{
 	font-size: 24rpx;
@@ -66,7 +81,7 @@
 	color: #333;
 }
 .report-msg{
-	margin-top: 40rpx;
+	margin-top: 30rpx;
 	background-color: #fff;
 	padding: 40rpx 30rpx;
 }
@@ -106,7 +121,7 @@
 .report-bottom{
 	background-color: #fff;
 	padding: 40rpx 30rpx;
-	margin-top: 40rpx;
+	margin-top: 30rpx;
 }
 .report-bottom-title{
 	font-size: 32rpx;
@@ -119,10 +134,10 @@
 	flex-wrap:wrap;
 }
 .r-b-part-list{
-	width: 68rpx;
-	height: 68rpx;
+	width: 60rpx;
+	height: 60rpx;
 	text-align: center;
-	line-height: 68rpx;
+	line-height: 60rpx;
 	background-color: #fff;
 	border-radius: 50%;
 	color: #9c9c9e;
@@ -146,7 +161,7 @@
 	color: #fff;
 }
 .r-b-part-list2{
-	width: 128rpx;
+	width: 60rpx;
 	height: 60rpx;
 	line-height:60rpx;
 	text-align: center;
@@ -154,18 +169,26 @@
 	color: #FF7944;
 	background-color: #FFF6F3;
 	border-radius: 36rpx;
+	margin: 0px 0rpx 30rpx 20rpx;
+}
+.card-list-more{
+	width: 128rpx!important;
+	border-radius: 40rpx!important;
 }
 .report-btn{
-	padding: 20rpx 30rpx 80rpx 30rpx;
+	border-top: 2rpx solid #ddd;
+	padding: 20rpx 30rpx 30rpx 30rpx;
 	background-color: #fff;
 	display: flex;
 	justify-content: space-between;
-	margin-top: 40rpx;
-	padding-bottom: 80rpx;
-
+	margin-top: 30rpx;
+	position: fixed;
+	bottom: 0rpx;
+	width: 100%;
+	box-sizing: border-box;	
 }
 .report-btn-list{
-	width: 216rpx;
+	width: 324rpx;
 	height: 80rpx;
 	line-height:80rpx;
 	text-align: center;
@@ -182,7 +205,7 @@
 }
 .report-middle canvas{
 	width: 100%;
-height: 400rpx;
+	height: 400rpx;
 }
 .error{
 	background-color: #F30F0D!important;

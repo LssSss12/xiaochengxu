@@ -7,6 +7,7 @@
 	placeholder="true"
   bind:click-left="onClickLeft"
 />
+<image style="width:100%;" src="../../images/realBack.png"></image>
 <view class="pep">
 	<view class="pep-box">
 		<view class="pep-box-t">
@@ -19,11 +20,11 @@
 			</view>
 			<view class="pep-box-b-list">
 				<view class="pep-box-b-list-l">总分</view>
-				<view class="pep-box-b-list-r">120分</view>
+				<view class="pep-box-b-list-r">{{obj.totalScore}}分</view>
 			</view>
 			<view class="pep-box-b-list">
 				<view class="pep-box-b-list-l">考试时长</view>
-				<view class="pep-box-b-list-r">45分钟</view>
+				<view class="pep-box-b-list-r">{{obj.totaltime}}分钟</view>
 			</view>
 			<view class="pep-box-b-list">
 				<view class="pep-box-b-list-l">上次得分</view>

@@ -64,7 +64,7 @@
 	border-radius: 0rpx 8rpx 0rpx 8rpx;
 }
 .ed-part-list-icon{
-	height: 64rpx;
+	height: 72rpx;
 	width: 72rpx;
 	margin:54rpx 0rpx 50rpx 0rpx;
 }

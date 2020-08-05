@@ -1,12 +1,14 @@
 .section{
 	height: 100%;
 	background-color: #f7f7f7;
+	margin-bottom: 30rpx;
 }
 .section-head{
 	display: flex;
 	justify-content: space-between;
-	padding: 40rpx;
+	padding:30rpx 40rpx;
 	background-color: #fff;
+	margin-bottom: 20rpx;
 }
 .section-head-l{
 	color: #f08052;
@@ -35,8 +37,7 @@
 }
 .section-level1{
 	background-color: #fff;
-	margin-bottom: 40rpx;
-	
+	margin-bottom: 20rpx;
 }
 .section-level1-top-icon{
 	background: #fa6228;
@@ -52,8 +53,12 @@
 	justify-content: space-between;
 	padding: 40rpx 32rpx;
 }
+.section-level-con-top .van-icon{
+	transform: rotate(-90deg);
+	transition: all .2s ease-out;
+}
 .section-level-con-top .rotate .van-icon{
-	transform: rotate(180deg);
+	transform: rotate(0deg);
 	color: #fa6228!important;
 }
 .section-level1-title{
@@ -66,9 +71,14 @@
 	font-size: 28rpx;
 	color: #333;
 	margin-left: 20rpx;
+	font-weight: bold;
 }
 .section-level-con-top{
 	margin-bottom: 20rpx;
+}
+.section-level2-top-icon{
+	transform: rotate(90deg);
+	color: #fa6228!important;
 }
 .section-level3-top-icon{
 	font-size: 16rpx;

@@ -1,4 +1,5 @@
 let api = require('../../utils/api.js')
+let fn = require('../../utils/util.js')
 let touchDotX = 0;//X按下时坐标
 let touchDotY = 0;//y按下时坐标
 let interval;//计时器
@@ -8,7 +9,8 @@ Page({
 		courseName:'',
 		courseId:'',//科目id
 		chapterId:'',//章节id
-		time: 45 * 60 * 1000,
+		timeStr: '00:00',//计时
+		seconds: 0,//计时
 		width: 0,//进度条
 		isRest: false,
 		modal: false,
@@ -16,14 +18,18 @@ Page({
 		answerArr: [],
 		serialNumber:1,//当前第几题
 		topicLength:0,//题目数量,
-		userExamPaperRecordId:''//答题卡ID
+		userExamPaperRecordId:'',//答题卡ID
+		setInter:'',
+		height:600,
+		topicCard:[]
 	},
 	onLoad: function (options) {
+		//正向计时
+		this.startSetInter()
 		//正常答题流程会有这些值，答题卡回来没有，去缓存里取
 		if(options.courseId){
 			wx.setStorageSync('courseId', options.courseId)
 			wx.setStorageSync('chapterId', options.chapterId)
-			wx.setStorageSync('courseName', options.courseName)
 		}
 		this.setData({
 			courseId:	wx.getStorageSync('courseId'),
@@ -34,7 +40,7 @@ Page({
 		if(options.from === 'card'){
 			this.setData({
 				serialNumber:parseFloat(options.serialNumber),
-				userExamPaperRecordId:options.userExamPaperRecordId,
+				userExamPaperRecordId:wx.getStorageSync('userExamPaperRecordId'),
 				time:parseFloat(wx.getStorageSync('remain')),
 				topicLength:options.topicLength
 			},()=>{
@@ -52,18 +58,55 @@ Page({
 					topicObj:res.data.respondAppExamQuestionVo,
 					topicLength:res.data.userExamPaperRecordEntity.totalTitle,
 					userExamPaperRecordId:res.data.userExamPaperRecordEntity.id,
-					paperName:res.data.userExamPaperRecordEntity.paperName
+					paperName:res.data.userExamPaperRecordEntity.paperName,
+					width:this.data.serialNumber/res.data.userExamPaperRecordEntity.totalTitle*100,
 				})
+				wx.setStorageSync('userExamPaperRecordId', res.data.userExamPaperRecordEntity.id)
 				if(res.data.respondAppExamQuestionVo.userAnswer&&res.data.respondAppExamQuestionVo.userAnswer!==''){
 					this.setData({
 						answerArr:res.data.respondAppExamQuestionVo.userAnswer.split('')
 					},()=>{
-						this.chkUserAnswer()
+						this.chkUserAnswer(res.data.respondAppExamQuestionVo.respondExamStemVo.questionsStem)
 					})
 				}
+				//案例分析处理图片
+			if(res.data.respondAppExamQuestionVo){
+				if(res.data.respondAppExamQuestionVo.titleType === 2){
+					this.dealRichImg(res.data.respondAppExamQuestionVo.respondExamStemVo.questionsStem)
+				}
+			}
 			})
 		}
-		
+	},
+	//计时开始
+	startSetInter(){
+		var that = this;
+		//将计时器赋值给setInter
+		that.data.setInter = setInterval(
+				function () {
+						var second = that.data.seconds + 1;
+						that.setData({ seconds: second, timeStr:fn.changeDate(second)});
+				}
+	, 1000);  
+	},
+	//清除计时器  即清除setInter
+	endSetInter: function(){
+		var that = this;
+		clearInterval(that.data.setInter)
+},
+//暂停计时
+rest(){
+	this.endSetInter()
+	this.setData({
+		modal: true
+	})
+},
+	//计时继续
+	timeGo() {
+		this.startSetInter()
+		this.setData({
+			modal: false
+		})
 	},
 	//场景：用户答完滑走，又滑回，需选中之前所选答案
 	chkUserAnswer(){
@@ -76,26 +119,6 @@ Page({
 			}
 		}
 	},
-	//计时暂停
-	rest() {
-		const countDown = this.selectComponent('.count-down');
-		countDown.pause();
-		this.setData({
-			isRest: true,
-			modal: true
-		})
-	},
-	//计时继续
-	timeGo() {
-		const countDown = this.selectComponent('.count-down');
-		countDown.start();
-		this.setData({
-			isRest: false,
-			modal: false
-		})
-	},
-	//倒计时结束
-	finished(){},
 	//获取题目
 	getTopic() {
 		let param = {
@@ -104,18 +127,36 @@ Page({
 		}
 		api.userSkipQuestionTitle(param).then(res => {
 			this.setData({
-				topicObj: res.data,
+				topicObj: res.data.respondAppExamQuestionVo,
 				width:this.data.serialNumber/this.data.topicLength*100,
 				isColect:false
 			})
-			if(res.data.userAnswer&&res.data.userAnswer!==''){
+
+			if(this.data.topicCard[param.serialNumber - 1]&&this.data.topicCard[param.serialNumber - 1] !== ''){
+				console.log(this.data.topicCard[param.serialNumber - 1].split(''))
 				this.setData({
-					answerArr:res.data.userAnswer.split('')
+					answerArr:this.data.topicCard[param.serialNumber - 1].split('')
 				},()=>{
 					this.chkUserAnswer()
 				})
 			}
+			//案例分析处理图片
+			if(res.data.respondAppExamQuestionVo){
+				if(res.data.respondAppExamQuestionVo.titleType === 2){
+					this.dealRichImg(res.data.respondAppExamQuestionVo.respondExamStemVo.questionsStem)
+				}
+			}
 		})
+	},
+		//处理分析题中的img
+	dealRichImg(str){
+		let domStr = str.replace(new RegExp("ᑅ ≮","gm"),'<img bindtap="preview" style="max-width:100%;height:auto;" src="').replace(new RegExp("≯ᐷ","gm"),'"></img>')
+		this.setData({
+			questionsStem:"【" + this.data.topicObj.respondExamStemVo.questionsNo + "】" + domStr
+		})
+	},
+	preview(){
+		console.log(1)
 	},
 	//选择答案
 	chkAnswer(e) {
@@ -143,6 +184,18 @@ Page({
 					this.setData({
 						[str]:true,
 						answerArr:answerArr
+					})
+				}
+				this.pushAnswer()
+				if(this.data.serialNumber === this.data.topicLength){
+					this.jiaojuan()
+					return;
+				}else{
+					let serialNumber = this.data.serialNumber
+					this.setData({
+						serialNumber:serialNumber + 1
+					},res => {
+						this.getTopic()
 					})
 				}
 			}
@@ -174,9 +227,12 @@ Page({
 				serialNumber: this.data.serialNumber,
 				userAnswer:this.data.answerArr.join('')
 			}
+			let topicCard = this.data.topicCard
+			topicCard[param.serialNumber - 1] = this.data.answerArr.join('')
 			api.userAnswerQuestion(param).then(res => {
 					this.setData({
-						answerArr: []
+						answerArr: [],
+						topicCard:topicCard
 					})
 			}).catch()
 		}
@@ -197,7 +253,7 @@ touchEnd: function(e) {
 	let tmX = touchMoveX - touchDotX;
 	let tmY = touchMoveY - touchDotY;
 	let num = this.data.serialNumber
-	if (time < 20) {
+	if (time < 200) {
 		let absX = Math.abs(tmX);
 		let absY = Math.abs(tmY);
 		if (absX > 2 * absY) {
@@ -205,10 +261,7 @@ touchEnd: function(e) {
 			this.pushAnswer()
 			if (tmX<0){
 				if(this.data.serialNumber === this.data.topicLength){
-					wx.showToast({
-						title: '题目已经答完，请交卷~',
-						icon: 'none'
-					})
+					this.jiaojuan()
 					return;
 			}else{
 				this.setData({
@@ -238,12 +291,14 @@ touchEnd: function(e) {
 	clearInterval(interval); // 清除setInterval
 	time = 0;
 },
+
 //交卷
 jiaojuan() {
-	const remain = this.selectComponent('.count-down').remain;
-	wx.setStorageSync('remain',remain)
+	//交卷时把最后一题提交
+	this.pushAnswer();
+	wx.setStorageSync('remain',this.data.seconds)
 	wx.navigateTo({
-		url: '../topicCard/card?id=' + this.data.userExamPaperRecordId,
+		url: '../topicCard/card?from=' + 'section'
 	})
 },
 //收藏
