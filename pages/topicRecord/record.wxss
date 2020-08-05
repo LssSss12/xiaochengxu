@@ -47,14 +47,25 @@
 .list-item-box{
 	display: flex;
 	height: 100%;
+	position: relative;
 }
 .list-item-box-l{
 	flex: 1;
+}
+.list-item-box-l .van-tag{
+	border-radius: 0rpx 0rpx 10rpx 10rpx;
+	position: absolute;
+	top: -30rpx;
+	right: -20rpx;
 }
 .list-item-box-l-text{
 	font-size: 32rpx;
 	color: #333;
 	margin-bottom: 24rpx;
+	width: 500rpx;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
 }
 .list-item-box-l-count{
 	font-size: 28rpx;
@@ -66,8 +77,11 @@
 .list-item-box-r .van-icon{
 	color: #9c9c9e;
 }
-.van-tag{
+.van-tag-done .van-tag{
 	background-color: #eee!important;
 	color: #9c9c9e!important;
-	margin-left: 10rpx;
+}
+.van-tag-undone .van-tag{
+	background-color: #F36210!important;
+	color: #fff!important;
 }

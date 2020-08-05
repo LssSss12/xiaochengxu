@@ -1,5 +1,4 @@
 .day{
-	padding:28rpx 30rpx;
 	box-sizing: border-box;
 }
 .day-type{
@@ -10,6 +9,7 @@
 	background-color: #f7f7f7;
 	font-size: 24rpx;
 	color: #9c9c9e;
+	margin: 20rpx 0px 0rpx 20rpx;
 }
 .day-title{
 	margin-top: 40rpx;
@@ -192,4 +192,35 @@
 }
 .moreYellowText{
 	color: #FFAA08;
+}
+
+.fenxi-t,.fenxi-b{
+	padding: 20rpx 30rpx;
+}
+.fenxi-b-qus{
+	font-size: 32rpx;
+	color: #333;
+}
+.fenxi-b-text{
+	font-size: 28rpx;
+	color: #9c9c9e;
+	border-top: 2rpx solid #ddd;
+padding-top: 20rpx;
+margin-top: 10px;
+}
+.fenxi-t{
+	overflow-y: scroll;
+	height:700rpx;
+}
+.fenxi-b{
+	border-top: 20rpx solid #ddd;
+	position: relative;
+}
+.fenxi-b-icon{
+	position: absolute;
+	top: -32rpx;
+	left: 50%;
+	background: #fff;
+	padding: 2rpx 8rpx;
+	margin-left: -14rpx;
 }

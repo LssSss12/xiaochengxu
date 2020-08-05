@@ -80,7 +80,6 @@ Page({
 			this.setData({ checked: detail });
 		},
 		startAction(e){
-			console.log(e)
 			let ids = e.currentTarget.dataset.id
 			let title = e.currentTarget.dataset.title
 			wx.setStorageSync('paperName', title)

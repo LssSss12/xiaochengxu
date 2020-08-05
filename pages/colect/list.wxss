@@ -1,12 +1,43 @@
 .section{
 	height: 100%;
 	background-color: #f7f7f7;
+	margin-bottom: 30rpx;
+}
+.section-head{
+	display: flex;
+	justify-content: space-between;
+	padding:30rpx 40rpx;
+	background-color: #fff;
+	margin-bottom: 20rpx;
+}
+.section-head-l{
+	color: #f08052;
+	font-size: 30rpx;
 }
 
+.section-continue{
+	box-shadow: 0px 0px 6rpx #ddd;
+	border: none;
+	background-color: #fff;
+	padding: 0rpx 30rpx 28rpx 30rpx;
+	margin-bottom: 32rpx;
+}
+.van-cell {
+	padding: 40rpx!important;
+	background: #f7f7f7!important;
+	border-radius: 8rpx;
+}
+.van-cell__title{
+	font-size: 32rpx;
+	color: #333;
+}
+.van-cell__label{
+	font-size: 28rpx;
+	color:#9c9c9e;
+}
 .section-level1{
 	background-color: #fff;
-	margin-bottom: 40rpx;
-	
+	margin-bottom: 20rpx;
 }
 .section-level1-top-icon{
 	background: #fa6228;
@@ -22,8 +53,12 @@
 	justify-content: space-between;
 	padding: 40rpx 32rpx;
 }
+.section-level-con-top .van-icon{
+	transform: rotate(-90deg);
+	transition: all .2s ease-out;
+}
 .section-level-con-top .rotate .van-icon{
-	transform: rotate(180deg);
+	transform: rotate(0deg);
 	color: #fa6228!important;
 }
 .section-level1-title{
@@ -36,9 +71,14 @@
 	font-size: 28rpx;
 	color: #333;
 	margin-left: 20rpx;
+	font-weight: bold;
 }
 .section-level-con-top{
 	margin-bottom: 20rpx;
+}
+.section-level2-top-icon{
+	transform: rotate(90deg);
+	color: #fa6228!important;
 }
 .section-level3-top-icon{
 	font-size: 16rpx;
@@ -57,6 +97,9 @@ border-radius: 50%;
 .section-level-accuracy{
 	font-size: 28rpx;
 	color: #76d08c;
+}
+.section-level3{
+	padding-left: 32rpx;
 }
 .section-level4{
 	padding-left: 64rpx;

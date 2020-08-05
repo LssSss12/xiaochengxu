@@ -12,6 +12,7 @@ function request(method, url, param, isShowLoading) {
       });
     }
     const date = util.formatTime(new Date())
+    console.log(new Date())
     var verifyToken = aesTool.Encrypt_cbc(date)
     let token = wx.getStorageSync('token');
   
@@ -35,12 +36,10 @@ function request(method, url, param, isShowLoading) {
         if (res.data.code == 0) { // 接口正常返回
           resolve(res.data);
         } else { // 出现异常
-          // wx.showToast({
-          //   title: res.data.message,
-          //   icon: 'none',
-          //   duration: 2000
-          // });
           reject(res.data);
+        }
+        if(res.data.code === 1005){
+          console.log(res.data.data.getTime())
         }
       },
       fail: function(res) {
@@ -49,7 +48,7 @@ function request(method, url, param, isShowLoading) {
           title: '服务连接异常',
           icon: 'none',
           duration: 2000
-        });
+        });        
       }
     });
   });

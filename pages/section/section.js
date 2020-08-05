@@ -21,8 +21,6 @@ Page({
 			chapterId:chapterId
 		}
 		api.getUserChapterExamList(param).then(res=>{
-			console.log(res)
-		
 			this.setData({
 				[level]:res.data
 			})

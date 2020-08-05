@@ -133,7 +133,6 @@ rest(){
 			})
 
 			if(this.data.topicCard[param.serialNumber - 1]&&this.data.topicCard[param.serialNumber - 1] !== ''){
-				console.log(this.data.topicCard[param.serialNumber - 1].split(''))
 				this.setData({
 					answerArr:this.data.topicCard[param.serialNumber - 1].split('')
 				},()=>{

@@ -14,12 +14,12 @@
     </view>
   </view>
   <view class="card1">
-    <view>
+    <view bindtap="goRecord">
       <image src="/images/user/2.png"></image>
       <text>做题记录</text>
-    </view>
+    </view> 
     <view>|</view>
-    <view>
+    <view bindtap="goCollect">
       <image src="/images/user/3.png"></image>
       <text>收藏夹</text>
     </view>

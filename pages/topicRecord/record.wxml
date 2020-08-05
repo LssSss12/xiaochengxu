@@ -12,16 +12,20 @@
 	<view class="list" wx:for="{{records}}" wx:key="index">
 		<view class="list-date">
 			<van-icon name="clock-o"></van-icon>
-			<text class="list-date-time">{{item.date}}</text>
+			<text class="list-date-time">{{item.createTime}}</text>
 		</view>
-		<view class="list-item" wx:for="{{item.children}}" wx:for-item="item2" wx:key="index2" wx:for-index="index2">
+		<view class="list-item" data-name="{{item.paperName}}" data-real="{{item.paperId}}" data-chapter="{{item.chapterId}}" data-type="{{item.paperType}}" bindtap="goTopic">
 			<view>
 			<view class="list-item-box">
 				<view class="list-item-box-l">
-					<view class="list-item-box-l-text">{{item2.title}} <van-tag>已完成</van-tag></view>
+					<view class="list-item-box-l-text">
+					{{item.paperName}} 
+					</view>
+						<van-tag class="van-tag-done" wx:if="{{item.status === 1}}">已完成</van-tag>
+						<van-tag class="van-tag-undone" wx:if="{{item.status === 0}}">未完成</van-tag>
 					<view class="list-item-box-l-count">
-						<text>共 {{item2.totle}} 题</text>
-						<text>做了 <text style="color:#F36210;">{{item.done}}</text> 题</text>
+						<text>共 {{item.totalTitle}} 题</text>
+						<text>做了 <text style="color:#F36210;">{{item.totalDonetitle}}</text> 题</text>
 					</view>
 				</view>
 				<view class="list-item-box-r">

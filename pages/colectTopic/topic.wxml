@@ -1,0 +1,89 @@
+<van-nav-bar
+  title="{{courseName}}"
+  left-arrow
+	z-index="999"
+	fixed
+	safe-area-inset-top
+	placeholder="true"
+  bind:click-left="onClickLeft"
+/>
+	<view class="topic-title">
+				<view class="topic-title-l">{{title}}</view>
+				<view class="topic-title-r">
+					<text style="color:#e36a30;">{{index}}</text>
+					<text>/{{topicLength}}</text>
+				</view>
+			</view>
+			<view class="topic-progress">
+				<view  class="topic-progress-curr" style="width:{{width}}%;"></view>
+	</view>
+	<view class="day" bindtouchstart="touchStart" bindtouchend="touchEnd">
+		<view class="day-type" wx:if="{{examObj.isMultipleChoice === 0&&examObj.titleType===0}}">单项选择题</view>
+		<view class="day-type" wx:if="{{examObj.isMultipleChoice === 1&&examObj.titleType===0}}">多项选择题</view>
+		<view class="day-type" wx:if="{{examObj.titleType===2}}">案例分析题</view>
+		
+		<view style="padding: 0rpx 30rpx;" wx:if="{{examObj.titleType===0}}">
+			<view class="day-title">【{{examObj.questionsNo}}】{{examObj.questionsTitle}}</view>
+			<!-- 单选 -->
+			<view class="day-choose" wx:if="{{examObj.isMultipleChoice === 0}}">
+				<view class="day-choose-list {{(curAnwser[0]===item.optionNo&&item.isRight=== 0&&analysis)?'err':''}} {{(item.isRight=== 1&&analysis)?'correct':''}}" wx:for="{{examObj.examQuestionsOptions}}" wx:key="index" data-index="{{index}}" data-answer="{{item.optionNo}}" data-right="{{item.isRight}}" bindtap="chkAnwser">
+					<view class="day-choose-list-label">{{item.optionNo}}</view>
+					<view class="day-choose-list-text">{{item.optionContent}}</view>
+				</view>
+			</view>
+			<!-- 多选 -->
+			<view class="day-choose" wx:if="{{examObj.isMultipleChoice === 1}}">
+				<view class="day-choose-list {{item.isChk&&!analysis?'chkGrey':''}}" wx:for="{{examObj.examQuestionsOptions}}" wx:key="index" data-index="{{index}}" data-answer="{{item.optionNo}}" data-right="{{item.isRight}}" bindtap="chkAnwser">
+					<view class="day-choose-list-label {{!analysis?'chk-label':''}}" wx:if="{{!analysis}}">{{item.optionNo}}</view>
+					<view class="day-choose-list-label moreGreen" wx:if="{{analysis&&item.isRight=== 1&&!item.isChk}}">{{item.optionNo}}</view>
+					<view class="day-choose-list-label moreGreen" wx:if="{{analysis&&item.isRight=== 1&&item.isChk}}">
+						<van-icon name="success" style="font-size:44rpx;margin-top:12rpx;"/>
+					</view>
+					<view class="day-choose-list-label moreRed" wx:if="{{analysis&&item.isRight=== 0&&item.isChk}}">X</view>
+					<view class="day-choose-list-label" wx:if="{{analysis&&item.isRight=== 0&&!item.isChk}}">{{item.optionNo}}</view>
+					<view class="day-choose-list-text">{{item.optionContent}}</view>
+				</view>
+			</view>
+			<van-button class="{{curAnwser.length === 0?'grey':''}}" wx:if="{{examObj.isMultipleChoice  === 1&&analysisBtn}}" type="primary" block bindtap="getDayanalysis">查看解析</van-button>
+
+			<view wx:if="{{analysis}}" class="day-analysis">
+				<view class="day-analysis-part1 clear">
+					<view class="day-analysis-part1-part">
+						<text class="day-analysis-part1-text">正确答案 </text>
+						<text class="day-analysis-part1-ABCD"> {{answerObj.examQuestionsAnalysisEntity.rightAnswers}}</text>
+					</view>
+						<view class="day-analysis-part1-part">
+						<text class="day-analysis-part1-text">我的答案 </text>
+						<text class="{{answerObj.answerResult===0?'moreRedText':''}} {{answerObj.answerResult===1?'moreGreenText':''}} {{answerObj.answerResult===2?'moreYellowText':''}}"> {{curAnwserStr}}</text>
+					</view>
+				</view>
+				<view class="day-analysis-part2">本题我做了 {{answerObj.doTotalTimes}} 次，作对了<text style="color:#f08052;"> {{answerObj.doRightTimes}} </text>次</view>
+				<view class="day-analysis-part3 clear">
+					<view class="day-analysis-part3-l">
+						<view class="day-analysis-part3-top">{{answerObj.doRightAccuracy}}%</view>
+						<view class="day-analysis-part3-bottom">全站正确率</view>
+					</view>
+					<view class="day-analysis-part3-r">
+						<view class="day-analysis-part3-top">{{answerObj.difficulty}}</view>
+						<view class="day-analysis-part3-bottom">测试题难度</view>
+					</view>
+				</view>
+
+				<view class="day-analysis-part4 clear">
+					<view class="day-analysis-part4-title">参考解析</view>
+					<view class="day-analysis-part4-analysis">{{answerObj.examQuestionsAnalysisEntity.analysisContent}}</view>
+					<view class="day-analysis-part4-title">相关考点</view>
+					<view class="day-analysis-part4-testing">{{examObj.examPoints[0].optionNo}}{{examObj.examPoints[0].pointsName}}></view>
+				</view>
+			</view>
+		</view>
+
+		<view class="fenxi" wx:if="{{examObj.titleType===2}}">
+			<view class="fenxi-t"><rich-text name="questionsStem" class='content' nodes="{{questionsStem}}"></rich-text></view>
+			<view class="fenxi-b">
+				<van-icon class="fenxi-b-icon" name="wap-nav"></van-icon>
+				<view class="fenxi-b-qus">【{{examObj.questionsNo}}】 {{examObj.questionsTitle}}</view>
+				<view class="fenxi-b-text">本题不支持手机作答，请在直纸质本上手写作答，可在交卷后核对答案并查看解析。</view>
+			</view>
+		</view>
+	</view>
