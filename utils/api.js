@@ -55,6 +55,12 @@ param);
 //获取考点详情
 let getUserPointsDetails = (param) => wxRequest.post('/user-service/user/getUserPointsDetails',
 param);
+//用户个人信息
+let userPersonalDetails = (param) => wxRequest.post('/user-service/user/userPersonalDetails',
+param);
+//获取考试类型和对应科目集合 
+let getExamTypeAndCourses = (param) => wxRequest.post('/user-service/user/getExamTypeAndCourses',
+param);
 module.exports = {
 	getWeixinOpenId,
 	getWeixinUnionId,
@@ -80,5 +86,7 @@ module.exports = {
 	getUserChapterExamList,
 	userErrorTitleList,
 	getUserErrorsPoints,
+	userPersonalDetails,
+	getExamTypeAndCourses,
 	getUserPointsDetails
 }

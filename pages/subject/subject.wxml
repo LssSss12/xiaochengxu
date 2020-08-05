@@ -1,18 +1,14 @@
 <!--pages/subject/subject.wxml-->
 <view class="subject-box">
   <view class="subject">
-    <view>工程经济 <image src="/images/user/check.png"></image></view>
-    <view>工程经济</view>
-    <view>工程经济</view>
-    <view>工程经济</view>
+    <view wx:for="{{courses}}" bindtap="selectCourse" data-item="{{item}}" data-id="{{item.id}}">{{item.courseShortName}} 
+      <image wx:if="{{item.checked}}" src="/images/user/check.png"></image>
+    </view>
   </view>
   <view class="exam">
-    <view class="{{exam==1?'active':''}}" data-id="1" bindtap="changeExam">
-      <text>一级建造师</text>   
-    </view>
-    <view class="{{exam==2?'active':''}}" data-id="2" bindtap="changeExam">
-      <text>二级建造师</text>  
+    <view wx:for="{{exams}}" class="{{examType==item.examType.name?'active':''}}" data-name="{{item.examType.name}}" bindtap="changeExam">
+      <text>{{item.examType.name}}</text>  
     </view>
   </view>
-  <view class="submit">完成</view>
+  <view class="submit" bindtap="submit">完成</view>
 </view>

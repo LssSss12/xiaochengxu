@@ -8,7 +8,7 @@
         <open-data type="userNickName" class="nickname"></open-data>
         <view>
           <image src="/images/user/1.png"></image>
-          <text>一级建造师</text>
+          <text>{{examTypeName}}</text>
         </view>
       </view>
     </view>
