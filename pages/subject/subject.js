@@ -5,11 +5,55 @@ Page({
    * 页面的初始数据
    */
   data: {
-    exam:1
+    exams:[],
+    examType:'',
+    courses:[],
+    selectArr:[],
   },
   changeExam: function(e){
     this.setData({
-      exam: e.currentTarget.dataset.id
+      selectArr:[],
+      examType: e.currentTarget.dataset.name
+    })
+    var self=this;
+    this.data.exams.forEach(function(item){
+      if(item.examType.name==self.data.examType){
+        for(let i=0;i<item.courseInfoList.length;i++){
+          item.courseInfoList[i].checked=false;
+        }
+        self.setData({
+          courses:item.courseInfoList
+        })
+      }
+    })
+  },
+  selectCourse(e){
+    var id= e.currentTarget.dataset.id;
+    var clickData=e.currentTarget.dataset.item;
+    var courses=this.data.courses
+    courses.forEach(function(item){
+      if(clickData.courseType=="公共课"){
+        if(item.id==id){
+          item.checked=!item.checked;
+        }
+      }else{
+        if(clickData.checked){
+          if(item.id==id){
+            item.checked=!item.checked;
+          }
+        }else{
+          if(item.id==id){
+            item.checked=!item.checked;
+          }else{
+            if(item.courseType=='专业课'){
+              item.checked=false;
+            }
+          }
+        }
+      }
+    })
+    this.setData({
+      courses:courses
     })
   },
   /**
@@ -25,12 +69,52 @@ Page({
   onReady: function () {
 
   },
+  submit(){
+    var params={courseList:[]};
+    var courses=this.data.courses
+    courses.forEach(function(item){
+      if(item.checked){
+        params.courseList.push(item.id);
+      }
+    })
+    if(params.courseList.length==0){return}
+    api.preselectionCourse(params).then(res => {
+      wx.reLaunch({
+        url: '../tiku/tiku',
+      })
+    })
+  },
   getUserExamCourseInfo(){
     api.getUserExamCourseInfo({})
       .then(res => {
         if (res.data && res.data.length > 0) {
+          var selectArr=[];
+          var examType='';
+          res.data.forEach(function(item){
+            selectArr.push(item.id)
+            examType=item.examType
+          })
           this.setData({
-            
+            selectArr:selectArr,
+            examType:examType
+          })
+          var self=this;
+          api.getExamTypeAndCourses().then(res => {
+            res.data.forEach(function(item){
+              if(item.examType.name==examType){
+                for(let i=0;i<item.courseInfoList.length;i++){
+                  if(selectArr.indexOf(item.courseInfoList[i].id)>-1){
+                    item.courseInfoList[i].checked=true;
+                  }
+                }
+                self.setData({
+                  courses:item.courseInfoList
+                })
+              }
+            })
+            this.setData({
+              exams:res.data
+            })
           })
         } else {
           wx.navigateTo({

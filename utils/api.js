@@ -59,7 +59,12 @@ param);
 let getQuestionsTitle = (param) => wxRequest.post('/user-service/user/getQuestionsTitle',
 param);
 //获取做题记录列表
-let getUsetExamPaperRecord = (param) => wxRequest.post('/user-service/user/getUsetExamPaperRecord',
+let getUsetExamPaperRecord = (param) => wxRequest.post('/user-service/user/getUsetExamPaperRecord',param);
+//用户个人信息
+let userPersonalDetails = (param) => wxRequest.post('/user-service/user/userPersonalDetails',
+param);
+//获取考试类型和对应科目集合 
+let getExamTypeAndCourses = (param) => wxRequest.post('/user-service/user/getExamTypeAndCourses',
 param);
 module.exports = {
 	getWeixinOpenId,
@@ -87,6 +92,8 @@ module.exports = {
 	userErrorTitleList,
 	getUserErrorsPoints,
 	getUserPointsDetails,
+	userPersonalDetails,
+	getExamTypeAndCourses,
 	getQuestionsTitle,
 	getUsetExamPaperRecord
 }
